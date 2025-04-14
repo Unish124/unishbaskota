@@ -1,10 +1,23 @@
-// Typing Animation
-const texts = ["a coder", "a student", "a learner"];
-let textIndex = 0, charIndex = 0, isDeleting = false;
-const animatedText = document.getElementById('animated-text');
+// Wait for DOM to be fully loaded
+document.addEventListener('DOMContentLoaded', function() {
+    // Initialize typing animation only on home page
+    initTypeAnimation();
+    
+    // Initialize hamburger menu on all pages
+    initHamburgerMenu();
+    
+    // Initialize navbar slider on all pages
+    initNavbarSlider();
+});
 
-// Only run typing animation if element exists (only on homepage)
-if (animatedText) {
+// Typing animation function (only for homepage)
+function initTypeAnimation() {
+    const animatedText = document.getElementById('animated-text');
+    if (!animatedText) return; // Skip if not on homepage
+    
+    const texts = ["a coder", "a student", "a learner"];
+    let textIndex = 0, charIndex = 0, isDeleting = false;
+    
     function typeAnimation() {
         const currentText = texts[textIndex];
         animatedText.textContent = currentText.slice(0, charIndex);
@@ -18,113 +31,106 @@ if (animatedText) {
         }
         setTimeout(typeAnimation, isDeleting ? 50 : 100);
     }
+    
     typeAnimation();
 }
 
-// Hamburger Menu
-const hamburger = document.getElementById('hamburger');
-const menu = document.getElementById('menu');
-const blurOverlay = document.getElementById('blurOverlay');
-
-hamburger.addEventListener('click', () => {
-    hamburger.classList.toggle('active');
-    menu.classList.toggle('active');
-    blurOverlay.classList.toggle('active');
-});
-
-blurOverlay.addEventListener('click', () => {
-    hamburger.classList.remove('active');
-    menu.classList.remove('active');
-    blurOverlay.classList.remove('active');
-});
-
-// UPDATED NAVBAR SLIDER CODE
-document.addEventListener('DOMContentLoaded', function() {
-    // Get current page URL
-    const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+// Hamburger menu function
+function initHamburgerMenu() {
+    const hamburger = document.getElementById('hamburger');
+    const menu = document.getElementById('menu');
+    const blurOverlay = document.getElementById('blurOverlay');
     
-    // Find the nav link that matches the current page and add 'active' class
-    const navLinks = document.querySelectorAll('.nav-links a');
-    navLinks.forEach(link => {
-        if(link.getAttribute('href') === currentPage) {
-            link.classList.add('active');
-        }
+    if (!hamburger || !menu || !blurOverlay) return; // Skip if elements not found
+    
+    hamburger.addEventListener('click', () => {
+        hamburger.classList.toggle('active');
+        menu.classList.toggle('active');
+        blurOverlay.classList.toggle('active');
     });
     
-    // Create the slider element - do this on every page
-    const slider = document.createElement('div');
-    slider.className = 'nav-slider';
+    blurOverlay.addEventListener('click', () => {
+        hamburger.classList.remove('active');
+        menu.classList.remove('active');
+        blurOverlay.classList.remove('active');
+    });
+}
+
+// Navbar slider function
+function initNavbarSlider() {
     const navLinksContainer = document.querySelector('.nav-links');
-    if (navLinksContainer) {
+    if (!navLinksContainer) return; // Skip if nav container not found
+    
+    // Create the slider element if it doesn't exist
+    let slider = navLinksContainer.querySelector('.nav-slider');
+    if (!slider) {
+        slider = document.createElement('div');
+        slider.className = 'nav-slider';
         navLinksContainer.appendChild(slider);
     }
     
-    // Position the slider under the active link on page load
-    setTimeout(positionSlider, 100); // Small delay to ensure DOM is ready
+    // Get all nav links
+    const navLinks = navLinksContainer.querySelectorAll('a');
+    if (!navLinks.length) return; // Skip if no links found
     
-    // Add hover events to all nav links
+    // Get current page filename
+    const currentPagePath = window.location.pathname;
+    const currentPage = currentPagePath.substring(currentPagePath.lastIndexOf('/') + 1) || 'index.html';
+    
+    // Set active class on current page link
+    let activeLink = null;
+    navLinks.forEach(link => {
+        const href = link.getAttribute('href');
+        if (href === currentPage) {
+            link.classList.add('active');
+            activeLink = link;
+        } else {
+            link.classList.remove('active');
+        }
+    });
+    
+    // Default to first link if no active link found
+    if (!activeLink) {
+        activeLink = navLinks[0];
+        activeLink.classList.add('active');
+    }
+    
+    // Add mouseenter events to all nav links
     navLinks.forEach(link => {
         link.addEventListener('mouseenter', function() {
-            // Move slider to hovered link
-            updateSlider(this);
+            updateSlider(this, slider, navLinksContainer);
         });
     });
     
     // When mouse leaves the nav-links area, reset slider to active link
-    if (navLinksContainer) {
-        navLinksContainer.addEventListener('mouseleave', function() {
-            positionSlider();
-        });
-    }
-});
-
-// Position slider under active link or first link if none active
-function positionSlider() {
-    const slider = document.querySelector('.nav-slider');
-    if (!slider) return; // Safety check
+    navLinksContainer.addEventListener('mouseleave', function() {
+        updateSlider(activeLink, slider, navLinksContainer);
+    });
     
-    const activeLink = document.querySelector('.nav-links a.active');
+    // Position slider initially with a slight delay
+    setTimeout(() => {
+        updateSlider(activeLink, slider, navLinksContainer);
+    }, 100);
     
-    if(activeLink) {
-        // Position under active link
-        updateSlider(activeLink);
-    } else {
-        // Position under first link instead of hiding
-        const firstLink = document.querySelector('.nav-links a');
-        if (firstLink) {
-            updateSlider(firstLink);
-        } else {
-            // Hide slider if no links at all
-            slider.style.opacity = '0';
-            slider.style.width = '0';
-        }
-    }
+    // Reposition on window resize
+    window.addEventListener('resize', function() {
+        updateSlider(activeLink, slider, navLinksContainer);
+    });
 }
 
-// Update slider position and size to match target element
-function updateSlider(element) {
-    const slider = document.querySelector('.nav-slider');
-    if (!slider || !element) return; // Safety check
+// Helper function to update slider position
+function updateSlider(targetLink, slider, container) {
+    if (!targetLink || !slider || !container) return;
     
-    // Get position relative to parent
-    const rect = element.getBoundingClientRect();
-    const navLinksRect = document.querySelector('.nav-links').getBoundingClientRect();
+    // Get positions
+    const linkRect = targetLink.getBoundingClientRect();
+    const containerRect = container.getBoundingClientRect();
     
-    // Calculate relative position and width
-    const leftPosition = rect.left - navLinksRect.left;
+    // Calculate position and width
+    const leftPosition = linkRect.left - containerRect.left;
     
-    // Update slider position and size
+    // Update slider
     slider.style.left = `${leftPosition}px`;
-    slider.style.width = `${rect.width}px`;
+    slider.style.width = `${linkRect.width}px`;
     slider.style.opacity = '1';
 }
-
-// Reposition slider on window resize
-window.addEventListener('resize', function() {
-    positionSlider();
-});
-
-// Make sure slider works even after page is fully loaded
-window.addEventListener('load', function() {
-    positionSlider();
-});
