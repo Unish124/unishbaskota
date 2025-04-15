@@ -8,6 +8,12 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Initialize navbar slider on all pages
     initNavbarSlider();
+    
+    // Initialize theme toggle
+    initThemeToggle();
+    
+    // Initialize section animations
+    initSectionAnimations();
 });
 
 // Typing animation function (only for homepage)
@@ -133,4 +139,142 @@ function updateSlider(targetLink, slider, container) {
     slider.style.left = `${leftPosition}px`;
     slider.style.width = `${linkRect.width}px`;
     slider.style.opacity = '1';
+}
+
+// Theme toggle function
+function initThemeToggle() {
+    // Create theme toggle button if it doesn't exist
+    if (!document.querySelector('.theme-toggle')) {
+        const navLinksContainer = document.querySelector('.nav-links');
+        const navbar = document.querySelector('.navbar');
+        
+        if (navbar) {
+            const themeToggle = document.createElement('div');
+            themeToggle.className = 'theme-toggle';
+            
+            const themeIcon = document.createElement('div');
+            themeIcon.className = 'theme-toggle-icon';
+            
+            themeToggle.appendChild(themeIcon);
+            
+            // Insert before hamburger or as last child of navbar
+            const hamburger = document.getElementById('hamburger');
+            if (hamburger) {
+                navbar.insertBefore(themeToggle, hamburger);
+            } else {
+                navbar.appendChild(themeToggle);
+            }
+            
+            // Add to mobile menu too
+            const menu = document.getElementById('menu');
+            if (menu) {
+                const mobileThemeToggle = document.createElement('div');
+                mobileThemeToggle.className = 'theme-toggle';
+                mobileThemeToggle.innerHTML = 'Toggle Theme';
+                mobileThemeToggle.style.color = 'white';
+                menu.appendChild(mobileThemeToggle);
+                
+                mobileThemeToggle.addEventListener('click', toggleTheme);
+            }
+            
+            // Add event listener
+            themeToggle.addEventListener('click', toggleTheme);
+        }
+    }
+    
+    // Check for saved theme preference
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme) {
+        document.body.classList.add(savedTheme === 'dark' ? 'dark-mode' : 'light-mode');
+        if (savedTheme === 'dark') {
+            document.body.classList.add('dark-mode');
+        }
+    } else {
+        // Default to light mode
+        document.body.classList.add('light-mode');
+    }
+}
+
+// Toggle theme function
+function toggleTheme() {
+    const isDarkMode = document.body.classList.contains('dark-mode');
+    
+    if (isDarkMode) {
+        document.body.classList.remove('dark-mode');
+        document.body.classList.add('light-mode');
+        localStorage.setItem('theme', 'light');
+    } else {
+        document.body.classList.remove('light-mode');
+        document.body.classList.add('dark-mode');
+        localStorage.setItem('theme', 'dark');
+    }
+}
+
+// Section animations initialization
+function initSectionAnimations() {
+    // Add animation classes to elements
+    const sections = document.querySelectorAll('section:not(.hero)');
+    sections.forEach(section => {
+        section.classList.add('fade-in');
+    });
+    
+    const historyHeader = document.querySelector('.history-header');
+    if (historyHeader) historyHeader.classList.add('slide-in-left');
+    
+    const projectsHeader = document.querySelector('.projects-header');
+    if (projectsHeader) projectsHeader.classList.add('slide-in-left');
+    
+    const booksHeader = document.querySelector('.books-header');
+    if (booksHeader) booksHeader.classList.add('slide-in-left');
+    
+    const filesHeader = document.querySelector('.files-header');
+    if (filesHeader) filesHeader.classList.add('slide-in-left');
+    
+    // Add staggered animations to grid items
+    const projectsContent = document.querySelector('.projects-content');
+    if (projectsContent) {
+        projectsContent.classList.add('stagger-animation');
+        const projectItems = projectsContent.querySelectorAll('.project-item');
+        projectItems.forEach(item => {
+            item.classList.add('scale-in');
+        });
+    }
+    
+    const booksContent = document.querySelector('.books-content');
+    if (booksContent) {
+        booksContent.classList.add('stagger-animation');
+        const bookItems = booksContent.querySelectorAll('.book-item');
+        bookItems.forEach(item => {
+            item.classList.add('scale-in');
+        });
+    }
+    
+    const filesContent = document.querySelector('.files-content');
+    if (filesContent) {
+        filesContent.classList.add('stagger-animation');
+        const fileItems = filesContent.querySelectorAll('.file-item');
+        fileItems.forEach(item => {
+            item.classList.add('scale-in');
+        });
+    }
+    
+    // Check visible elements on load
+    checkAnimatedElements();
+    
+    // Listen for scroll to animate elements
+    window.addEventListener('scroll', checkAnimatedElements);
+}
+
+// Helper function to check if elements are in viewport
+function checkAnimatedElements() {
+    const animatedElements = document.querySelectorAll('.fade-in, .slide-in-left, .slide-in-right, .scale-in, .stagger-animation > *');
+    
+    animatedElements.forEach(element => {
+        const elementTop = element.getBoundingClientRect().top;
+        const elementVisible = 150; // Distance from top of viewport
+        
+        if (elementTop < window.innerHeight - elementVisible) {
+            element.classList.add('active');
+        }
+    });
 }
