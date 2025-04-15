@@ -109,23 +109,7 @@
     </section>
 
     <!-- JavaScript -->
-    <script>
-        const hamburger = document.getElementById('hamburger');
-        const menu = document.getElementById('menu');
-        const blurOverlay = document.getElementById('blurOverlay');
-
-        hamburger.addEventListener('click', () => {
-            hamburger.classList.toggle('active');
-            menu.classList.toggle('active');
-            blurOverlay.classList.toggle('active');
-        });
-
-        blurOverlay.addEventListener('click', () => {
-            hamburger.classList.remove('active');
-            menu.classList.remove('active');
-            blurOverlay.classList.remove('active');
-        });
-    </script>
+    <script src="script.js"></script>
 
 </body>
 </html>
