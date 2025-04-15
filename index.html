@@ -1,54 +1,659 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Unish - Portfolio</title>
-    <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-    <!-- Navigation Bar -->
-    <nav class="navbar">
-        <h1>Unish's Portfolio</h1>
-        <div class="hamburger" id="hamburger">
-            <div></div>
-            <div></div>
-            <div></div>
-        </div>
-        <ul class="nav-links">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="history.html">History</a></li>
-            <li><a href="books.html">Books</a></li>
-            <li><a href="projects.html">Projects</a></li>
-            <li><a href="files.html">Files</a></li>
-            <!-- The slider will be added by JavaScript -->
-        </ul>
-    </nav>
+/* Reset CSS */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Dark/Light Mode Variables */
+:root {
+    --background-color: #f4f4f9;
+    --text-color: #333;
+    --card-bg: #fff;
+    --card-shadow: rgba(0, 0, 0, 0.1);
+    --navbar-bg: #1f1f1f;
+    --navbar-text: white;
+    --section-header: #333;
+    --section-border: #0072ff;
+    --card-text: #555;
+    --transition: all 0.3s ease;
+}
+
+.dark-mode {
+    --background-color: #121212;
+    --text-color: #e0e0e0;
+    --card-bg: #1e1e1e;
+    --card-shadow: rgba(0, 0, 0, 0.3);
+    --navbar-bg: #000000;
+    --navbar-text: #ffffff;
+    --section-header: #e0e0e0;
+    --section-border: #1DB954;
+    --card-text: #b0b0b0;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    line-height: 1.6;
+    padding-top: 0;
+    margin: 0;
+    transition: var(--transition);
+}
+
+.content-section, .books-content {
+    margin-top: 80px;
+}
+
+section {
+    margin-top: 80px;
+}
+
+/* Enhanced Navbar Styling with Slider Effect */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--navbar-bg);
+    padding: 1rem 2rem;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1100;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    border-bottom: none;
+    margin: 0;
+    height: 70px; /* Fixed height for consistency */
+    transition: var(--transition);
+}
+
+.navbar h1 {
+    color: var(--navbar-text);
+    font-size: 1.5rem;
+    margin: 0;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    transition: var(--transition);
+}
+
+/* Enhanced Nav Links with Slider Effect */
+.nav-links {
+    display: flex;
+    gap: 1.5rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    position: relative;
+}
+
+/* This will be our moving slider */
+.nav-slider {
+    position: absolute;
+    bottom: -5px;
+    height: 3px;
+    background: linear-gradient(90deg, #1DB954, #0072ff);
+    border-radius: 3px;
+    transition: all 0.3s ease;
+    opacity: 0;
+    /* Initial values - will be updated by JS */
+    left: 0;
+    width: 0;
+}
+
+.nav-links li {
+    margin: 0;
+    position: relative;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: var(--navbar-text);
+    font-size: 1rem;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+    display: inline-block;
+    position: relative;
+    font-weight: 500;
+    letter-spacing: 0.3px;
+}
+
+/* Remove the background hover effect since we'll use the slider instead */
+.nav-links a:hover {
+    color: #1DB954;
+    background-color: transparent;
+}
+
+/* Active link styling */
+.nav-links a.active {
+    color: #1DB954;
+}
+
+.hamburger {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    z-index: 1200;
+}
+
+.hamburger div {
+    width: 30px;
+    height: 4px;
+    background-color: var(--navbar-text);
+    margin: 5px 0;
+    transition: transform 0.3s ease, opacity 0.3s ease, background-color 0.3s ease;
+}
+
+.hamburger.active div:nth-child(1) {
+    transform: rotate(45deg) translate(6px, 6px);
+}
+
+.hamburger.active div:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger.active div:nth-child(3) {
+    transform: rotate(-45deg) translate(6px, -6px);
+}
+
+.menu {
+    position: fixed;
+    top: 70px;
+    right: 20px;
+    width: 250px;
+    padding: 1rem;
+    background-color: var(--navbar-bg);
+    color: var(--navbar-text);
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    display: none;
+    flex-direction: column;
+    gap: 1rem;
+    z-index: 1100;
+    transition: var(--transition);
+}
+
+.menu.active {
+    display: flex;
+    animation: fadeIn 0.3s ease;
+}
+
+.menu a {
+    text-decoration: none;
+    color: var(--navbar-text);
+    font-size: 1rem;
+    padding: 0.5rem 0.7rem;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.menu a:hover {
+    background-color: #575757;
+    color: #1DB954;
+}
+
+.blur-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    backdrop-filter: blur(5px);
+    background-color: rgba(0, 0, 0, 0.3);
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.blur-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Hero Section */
+.hero {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background: url('https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0?crop=entropy&fit=crop&w=1920&h=1080&q=80') no-repeat center center/cover;
+    color: white;
+    position: relative;
+    margin-top: 0;
+    padding-top: 0;
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+}
+
+.hero-content {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.hero-content span {
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-right: 5px;
+}
+
+.hero-content span:last-child {
+    margin-right: 0;
+}
+
+.cursor {
+    position: relative;
+    margin-left: -5px;
+    width: 5px;
+    height: 2.5rem;
+    background-color: white;
+    animation: blink 0.7s infinite;
+}
+
+@keyframes blink {
+    0% { opacity: 1; }
+    50% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+/* History Section */
+.content-section {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+    margin-top: 100px;
+}
+
+.history-header {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.history-header h2 {
+    font-size: 2.5rem;
+    color: var(--section-header);
+    border-bottom: 3px solid var(--section-border);
+    display: inline-block;
+    padding-bottom: 10px;
+    transition: var(--transition);
+}
+
+.history-content {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.history-item {
+    display: flex;
+    gap: 2rem;
+    flex-wrap: wrap;
+}
+
+.history-text {
+    flex: 1;
+    padding: 1rem;
+}
+
+.history-text h3 {
+    font-size: 1.8rem;
+    color: var(--text-color);
+    margin-bottom: 10px;
+    transition: var(--transition);
+}
+
+.history-text p {
+    font-size: 1rem;
+    color: var(--card-text);
+    line-height: 1.8;
+    transition: var(--transition);
+}
+
+.history-item img {
+    max-width: 100%;
+    width: 400px;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px var(--card-shadow);
+    transition: var(--transition);
+}
+
+/* Projects Page Styles */
+.projects-header {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.projects-header h2 {
+    font-size: 2.5rem;
+    color: var(--section-header);
+    border-bottom: 3px solid var(--section-border);
+    display: inline-block;
+    padding-bottom: 10px;
+    transition: var(--transition);
+}
+
+.projects-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.project-item {
+    background-color: var(--card-bg);
+    padding: 1rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px var(--card-shadow);
+    text-align: center;
+    transition: var(--transition);
+}
+
+.project-item img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 4px;
+}
+
+.project-item h3 {
+    font-size: 1.5rem;
+    margin: 1rem 0;
+    color: var(--text-color);
+    transition: var(--transition);
+}
+
+.project-item p {
+    color: var(--card-text);
+    font-size: 0.9rem;
+    line-height: 1.5;
+    transition: var(--transition);
+}
+
+.project-item a {
+    display: inline-block;
+    margin-top: 1rem;
+    padding: 0.5rem 1rem;
+    background-color: #0072ff;
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: background 0.3s ease;
+}
+
+.project-item a:hover {
+    background-color: #005bb5;
+}
+
+/* Files Section */
+.files-header {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.files-header h2 {
+    font-size: 2.5rem;
+    color: var(--section-header);
+    border-bottom: 3px solid var(--section-border);
+    display: inline-block;
+    padding-bottom: 10px;
+    transition: var(--transition);
+}
+
+.files-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 2rem;
+}
+
+.file-item {
+    background-color: var(--card-bg);
+    padding: 1rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px var(--card-shadow);
+    text-align: center;
+    transition: var(--transition);
+}
+
+.file-item h3 {
+    font-size: 1.5rem;
+    margin: 1rem 0;
+    color: var(--text-color);
+    transition: var(--transition);
+}
+
+.file-item a {
+    text-decoration: none;
+    color: #0072ff;
+    font-size: 1.1rem;
+}
+
+/* Footer */
+.footer {
+    text-align: center;
+    padding: 1.5rem;
+    background-color: var(--navbar-bg);
+    color: var(--navbar-text);
+    transition: var(--transition);
+}
+
+/* Books Section Styles */
+.books-header {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.books-header h2 {
+    font-size: 2.5rem;
+    color: var(--section-header);
+    border-bottom: 3px solid var(--section-border);
+    display: inline-block;
+    padding-bottom: 10px;
+    transition: var(--transition);
+}
+
+.books-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 2rem;
+}
+
+.book-item {
+    background-color: var(--card-bg);
+    padding: 1rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px var(--card-shadow);
+    text-align: center;
+    transition: var(--transition);
+}
+
+.book-item img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 4px;
+}
+
+.book-item h3 {
+    font-size: 1.5rem;
+    margin: 1rem 0;
+    color: var(--text-color);
+    transition: var(--transition);
+}
+
+.book-item p {
+    color: var(--card-text);
+    font-size: 0.9rem;
+    line-height: 1.5;
+    transition: var(--transition);
+}
+
+/* Theme Toggle Button */
+.theme-toggle {
+    display: flex;
+    align-items: center;
+    margin-right: 20px;
+    cursor: pointer;
+}
+
+.theme-toggle-icon {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background-color: var(--navbar-text);
+    position: relative;
+    transition: var(--transition);
+    overflow: hidden;
+}
+
+.theme-toggle-icon:before {
+    content: '';
+    position: absolute;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background-color: var(--navbar-bg);
+    top: 5px;
+    left: 5px;
+    transition: var(--transition);
+    transform: translateX(0);
+}
+
+.dark-mode .theme-toggle-icon:before {
+    transform: translateX(-20px);
+}
+
+.dark-mode .theme-toggle-icon:after {
+    content: '🌙';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+}
+
+.light-mode .theme-toggle-icon:after {
+    content: '☀️';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+}
+
+/* Section Animations */
+.fade-in {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.fade-in.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.slide-in-left {
+    opacity: 0;
+    transform: translateX(-50px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.slide-in-left.active {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.slide-in-right {
+    opacity: 0;
+    transform: translateX(50px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.slide-in-right.active {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.scale-in {
+    opacity: 0;
+    transform: scale(0.8);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.scale-in.active {
+    opacity: 1;
+    transform: scale(1);
+}
+
+/* Staggered animations for grid items */
+.stagger-animation > * {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.stagger-animation > *.active:nth-child(1) { transition-delay: 0.1s; }
+.stagger-animation > *.active:nth-child(2) { transition-delay: 0.2s; }
+.stagger-animation > *.active:nth-child(3) { transition-delay: 0.3s; }
+.stagger-animation > *.active:nth-child(4) { transition-delay: 0.4s; }
+.stagger-animation > *.active:nth-child(5) { transition-delay: 0.5s; }
+.stagger-animation > *.active:nth-child(6) { transition-delay: 0.6s; }
+.stagger-animation > *.active:nth-child(7) { transition-delay: 0.7s; }
+.stagger-animation > *.active:nth-child(8) { transition-delay: 0.8s; }
+.stagger-animation > *.active:nth-child(n+9) { transition-delay: 0.9s; }
+
+.stagger-animation > *.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .nav-links {
+        display: none;
+    }
+
+    .hamburger {
+        display: flex;
+    }
+
+    .history-header h2, .projects-header h2, .books-header h2, .files-header h2 {
+        font-size: 2rem;
+    }
     
-    <!-- Floating Menu -->
-    <div class="menu" id="menu">
-        <a href="index.html">Home</a>
-        <a href="history.html">History</a>
-        <a href="books.html">Books</a>
-        <a href="projects.html">Projects</a>
-        <a href="files.html">Files</a>
-    </div>
-    <div class="blur-overlay" id="blurOverlay"></div>
-    
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="hero-content">
-            <span>I am </span>
-            <span id="animated-text"></span>
-            <span class="cursor" id="cursor"></span>
-        </div>
-    </section>
-    
-    <!-- Footer -->
-    <footer class="footer">
-        <p>&copy; 2024 Unish Baskota. All Rights Reserved.</p>
-    </footer>
-    
-    <script src="script.js"></script>
-</body>
-</html>
+    .theme-toggle {
+        position: absolute;
+        top: 20px;
+        right: 70px;
+    }
+}
