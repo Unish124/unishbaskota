@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Coming Soon</title>
+  <title>Updating...</title>
   <style>
     * {
       margin: 0;
@@ -11,13 +11,16 @@
       box-sizing: border-box;
     }
 
-    body, html {
+    html, body {
       height: 100%;
       font-family: 'Segoe UI', sans-serif;
       overflow: hidden;
+      background: #000;
       position: relative;
+      color: white;
     }
 
+    /* Glowing Gradient Background */
     .background {
       position: absolute;
       width: 100%;
@@ -25,7 +28,7 @@
       background: linear-gradient(-45deg, #1a2a6c, #b21f1f, #fdbb2d, #009fff);
       background-size: 400% 400%;
       animation: gradientBG 15s ease infinite;
-      z-index: -1;
+      z-index: -2;
     }
 
     @keyframes gradientBG {
@@ -34,83 +37,106 @@
       100% { background-position: 0% 50%; }
     }
 
+    /* Centered Content */
     .content {
-      position: relative;
       height: 100%;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      color: white;
       text-align: center;
+      z-index: 2;
+      position: relative;
       animation: fadeIn 2s ease-in-out;
     }
 
     h1 {
       font-size: 4rem;
-      letter-spacing: 3px;
-      animation: zoomIn 2s ease-in-out;
+      animation: pulse 3s infinite ease-in-out;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+
+    h1:hover {
+      transform: scale(1.05);
     }
 
     .subtitle {
-      font-size: 1.2rem;
-      margin-top: 10px;
+      font-size: 1.4rem;
+      margin-top: 15px;
       opacity: 0.9;
-    }
-
-    #countdown {
-      margin-top: 20px;
-      font-size: 1.5rem;
-      font-weight: bold;
-      background: rgba(255, 255, 255, 0.1);
-      padding: 10px 20px;
-      border-radius: 10px;
-      backdrop-filter: blur(5px);
+      animation: fadeInUp 2s ease-in-out;
     }
 
     @keyframes fadeIn {
-      0% { opacity: 0; transform: translateY(20px); }
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeInUp {
+      0% { opacity: 0; transform: translateY(30px); }
       100% { opacity: 1; transform: translateY(0); }
     }
 
-    @keyframes zoomIn {
-      0% { transform: scale(0.5); opacity: 0; }
-      100% { transform: scale(1); opacity: 1; }
+    @keyframes pulse {
+      0%, 100% { text-shadow: 0 0 5px #fff, 0 0 10px #00f, 0 0 20px #0ff; }
+      50% { text-shadow: 0 0 20px #fff, 0 0 30px #0ff, 0 0 50px #00f; }
     }
+
+    /* Floating Bubbles */
+    .bubbles span {
+      position: absolute;
+      bottom: -100px;
+      width: 20px;
+      height: 20px;
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 50%;
+      animation: floatUp 20s linear infinite;
+    }
+
+    .bubbles span:nth-child(odd) {
+      width: 30px;
+      height: 30px;
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    @keyframes floatUp {
+      0% {
+        transform: translateY(0) scale(1);
+        opacity: 0;
+      }
+      50% {
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-100vh) scale(1.5);
+        opacity: 0;
+      }
+    }
+
+    .bubbles span:nth-child(1) { left: 10%; animation-delay: 0s; }
+    .bubbles span:nth-child(2) { left: 25%; animation-delay: 2s; }
+    .bubbles span:nth-child(3) { left: 40%; animation-delay: 4s; }
+    .bubbles span:nth-child(4) { left: 60%; animation-delay: 6s; }
+    .bubbles span:nth-child(5) { left: 75%; animation-delay: 8s; }
+    .bubbles span:nth-child(6) { left: 85%; animation-delay: 10s; }
   </style>
 </head>
 <body>
   <div class="background"></div>
+
   <div class="content">
-    <h1>Coming Soon</h1>
-    <p class="subtitle">We're working hard to launch our website.</p>
-    <div id="countdown"></div>
+    <h1>Updating...</h1>
+    <p class="subtitle">Under Development</p>
   </div>
 
-  <script>
-    // Set your launch date (YYYY-MM-DD)
-    const launchDate = new Date("2025-12-31T00:00:00").getTime();
-
-    const countdown = document.getElementById("countdown");
-    const updateCountdown = () => {
-      const now = new Date().getTime();
-      const distance = launchDate - now;
-
-      if (distance < 0) {
-        countdown.innerHTML = "We’re live!";
-        return;
-      }
-
-      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-      countdown.innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
-    };
-
-    updateCountdown();
-    setInterval(updateCountdown, 1000);
-  </script>
+  <div class="bubbles">
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
 </body>
 </html>
