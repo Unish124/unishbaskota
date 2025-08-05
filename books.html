@@ -1,113 +1,142 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Unish Portfolio</title>
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Updating...</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      height: 100%;
+      font-family: 'Segoe UI', sans-serif;
+      overflow: hidden;
+      background: #000;
+      position: relative;
+      color: white;
+    }
+
+    /* Glowing Gradient Background */
+    .background {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(-45deg, #1a2a6c, #b21f1f, #fdbb2d, #009fff);
+      background-size: 400% 400%;
+      animation: gradientBG 15s ease infinite;
+      z-index: -2;
+    }
+
+    @keyframes gradientBG {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    /* Centered Content */
+    .content {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      z-index: 2;
+      position: relative;
+      animation: fadeIn 2s ease-in-out;
+    }
+
+    h1 {
+      font-size: 4rem;
+      animation: pulse 3s infinite ease-in-out;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+
+    h1:hover {
+      transform: scale(1.05);
+    }
+
+    .subtitle {
+      font-size: 1.4rem;
+      margin-top: 15px;
+      opacity: 0.9;
+      animation: fadeInUp 2s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeInUp {
+      0% { opacity: 0; transform: translateY(30px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes pulse {
+      0%, 100% { text-shadow: 0 0 5px #fff, 0 0 10px #00f, 0 0 20px #0ff; }
+      50% { text-shadow: 0 0 20px #fff, 0 0 30px #0ff, 0 0 50px #00f; }
+    }
+
+    /* Floating Bubbles */
+    .bubbles span {
+      position: absolute;
+      bottom: -100px;
+      width: 20px;
+      height: 20px;
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 50%;
+      animation: floatUp 20s linear infinite;
+    }
+
+    .bubbles span:nth-child(odd) {
+      width: 30px;
+      height: 30px;
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    @keyframes floatUp {
+      0% {
+        transform: translateY(0) scale(1);
+        opacity: 0;
+      }
+      50% {
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-100vh) scale(1.5);
+        opacity: 0;
+      }
+    }
+
+    .bubbles span:nth-child(1) { left: 10%; animation-delay: 0s; }
+    .bubbles span:nth-child(2) { left: 25%; animation-delay: 2s; }
+    .bubbles span:nth-child(3) { left: 40%; animation-delay: 4s; }
+    .bubbles span:nth-child(4) { left: 60%; animation-delay: 6s; }
+    .bubbles span:nth-child(5) { left: 75%; animation-delay: 8s; }
+    .bubbles span:nth-child(6) { left: 85%; animation-delay: 10s; }
+  </style>
 </head>
 <body>
+  <div class="background"></div>
 
-    <!-- Navigation Bar -->
-    <nav class="navbar">
-        <h1>Unish's Portfolio</h1>
-        <div class="hamburger" id="hamburger">
-            <div></div>
-            <div></div>
-            <div></div>
-        </div>
-        <ul class="nav-links">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="history.html">History</a></li>
-        <li><a href="books.html">Books</a></li>
-        <li><a href="projects.html">Projects</a></li>
-        <li><a href="files.html">Files</a></li>
-    </ul>
-</nav>
-    </nav>
+  <div class="content">
+    <h1>Updating...</h1>
+    <p class="subtitle">Under Development</p>
+  </div>
 
-    <!-- Floating Menu -->
-    <div class="menu" id="menu">
-        <a href="index.html">Home</a>
-        <a href="history.html">History</a>
-        <a href="books.html">Books</a>
-        <a href="projects.html">Projects</a>
-        <a href="files.html">Files</a>
-    </div>
-
-    <div class="blur-overlay" id="blurOverlay"></div>
-
-    <!-- Books Section -->
-    <section class="content-section">
-        <div class="books-header">
-            <h2>Books Collection</h2>
-        </div>
-
-        <div class="books-content">
-            <!-- Old Books -->
-            <div class="book-item">
-                <img src="https://static-01.daraz.com.np/p/910017ddf8a7e0cbc7ffaeda4cf199d8.jpg" alt="Rich Dad Poor Dad">
-                <h3>Rich Dad Poor Dad</h3>
-                <p>by Robert T. Kiyosaki (Nepali version)</p>
-            </div>
-
-            <div class="book-item">
-                <img src="https://img.drz.lazcdn.com/static/np/p/ea965e80f92cdfe373d9eeff5765dbef.png" alt="The Alchemist">
-                <h3>The Alchemist</h3>
-                <p>by Paulo Coelho (Nepali version)</p>
-            </div>
-
-            <div class="book-item">
-                <img src="https://media.thuprai.com/front_covers/concise-48-laws-of-power-cqvk2wfd.jpg" alt="The Concise 48 Laws of Power">
-                <h3>The Concise 48 Laws of Power</h3>
-                <p>by Robert Greene</p>
-            </div>
-
-            <div class="book-item">
-                <img src="https://potterrarebooks.com/wp-content/uploads/2024/01/PhotoRoom_20240201_170852-1030x1030.jpg" alt="Harry Potter and the Philosopher's Stone">
-                <h3>Harry Potter and the Philosopher's Stone</h3>
-                <p>by J.K. Rowling (Nepali version)</p>
-            </div>
-
-            <div class="book-item">
-                <img src="https://static-01.daraz.com.np/p/d2cc447ff200ed5d5464446304b24ac3.jpg" alt="I Don’t Love You Anymore">
-                <h3>I Don’t Love You Anymore</h3>
-                <p>by Rithvik Singh</p>
-            </div>
-
-            <!-- New Books -->
-            <div class="book-item">
-                <img src="https://m.media-amazon.com/images/I/61M2ERCprqL.jpg" alt="The Diary of a Young Girl">
-                <h3>The Diary of a Young Girl</h3>
-                <p>by Anne Frank</p>
-            </div>
-
-            <div class="book-item">
-                <img src="https://images-na.ssl-images-amazon.com/images/I/71tbalAHYCL.jpg" alt="Ikigai">
-                <h3>Ikigai</h3>
-                <p>by Francesc Miralles and Hector Garcia</p>
-            </div>
-
-            <div class="book-item">
-                <img src="https://static-01.daraz.com.np/p/2c047451d02a4179e793dd3c09bc41c1.jpg" alt="Warmth">
-                <h3>Warmth</h3>
-                <p>by Rithvik Singh</p>
-            </div>
-
-            <div class="book-item">
-                <img src="https://www.aphnepal.com/products/large/1657277217-sabai-vanda-kathin-kam-sabai-vanda-pahila.png" alt="Eat That Frog">
-                <h3>Eat That Frog</h3>
-                <p>by Brian Tracy (Nepali version)</p>
-            </div>
-
-            <div class="book-item">
-                <img src="https://static-01.daraz.com.np/p/2e75e7681ca55fb19b7184b334f95034.jpg" alt="Metamorphosis">
-                <h3>Metamorphosis</h3>
-                <p>by Franz Kafka</p>
-            </div>
-        </div>
-    </section>
-  <!-- JavaScript -->
-   <script src="script.js"></script>
+  <div class="bubbles">
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
 </body>
 </html>
