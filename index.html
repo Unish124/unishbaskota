@@ -228,6 +228,22 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--red); outline-o
 .hero-art { display: flex; justify-content: center; }
 .hero-art svg { width: 100%; max-width: 480px; height: auto; }
 
+@keyframes floatSoft {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+@keyframes floatSoftRotate {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-8px) rotate(6deg); }
+}
+.float-1 { animation: floatSoft 3.6s ease-in-out infinite; transform-origin: center; transform-box: fill-box; }
+.float-2 { animation: floatSoft 3s ease-in-out infinite; animation-delay: .4s; transform-origin: center; transform-box: fill-box; }
+.float-3 { animation: floatSoftRotate 4.2s ease-in-out infinite; animation-delay: .8s; transform-origin: center; transform-box: fill-box; }
+.float-4 { animation: floatSoftRotate 3.4s ease-in-out infinite; animation-delay: 1.2s; transform-origin: center; transform-box: fill-box; }
+.float-5 { animation: floatSoft 3.8s ease-in-out infinite; animation-delay: .2s; transform-origin: center; transform-box: fill-box; }
+.float-6 { animation: floatSoft 4.4s ease-in-out infinite; animation-delay: .6s; transform-origin: center; transform-box: fill-box; }
+.float-7 { animation: floatSoft 3.2s ease-in-out infinite; animation-delay: 1s; transform-origin: center; transform-box: fill-box; }
+
 /* ---------- Content sections ---------- */
 .content-section { max-width: 1200px; margin: 0 auto; padding: 5rem 4vw 6rem; }
 
@@ -384,11 +400,21 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--red); outline-o
 }
 
 /* ---------- Contact / Get in Touch ---------- */
+#contact { position: relative; overflow: hidden; }
+
+.contact-bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    opacity: 0.16;
+}
+.contact-bg svg { width: 100%; height: 100%; }
+
+#contact .content-section { position: relative; z-index: 1; }
+
 .contact-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 3rem;
-    align-items: center;
+    max-width: 560px;
 }
 
 .contact-toggle {
@@ -499,12 +525,8 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--red); outline-o
     min-height: 1.2em;
 }
 
-.contact-art { display: flex; justify-content: center; align-items: center; }
-.contact-art svg { width: 100%; max-width: 460px; height: auto; }
-
 @media (max-width: 900px) {
-    .contact-grid { grid-template-columns: 1fr; }
-    .contact-art { order: -1; max-width: 320px; margin: 0 auto 1rem; }
+    .contact-bg { opacity: 0.1; }
 }
 
 /* ---------- Footer ---------- */
@@ -578,7 +600,7 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--red); outline-o
                     </div>
                     <div class="chip-row">
                         <span class="chip">From <strong>Nepal</strong></span>
-                        <span class="chip">Focus <strong>Tech &amp; Science</strong></span>
+                        <span class="chip">Interest <strong>Tech &amp; Science</strong></span>
                     </div>
                 </div>
                 <div class="hero-art">
@@ -587,11 +609,11 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--red); outline-o
                         <ellipse cx="260" cy="230" rx="180" ry="70" fill="none" stroke="#14141C" stroke-width="1.2" transform="rotate(10 260 230)"/>
 
                         <!-- floating dots -->
-                        <circle cx="90" cy="120" r="12" fill="#14141C"/>
-                        <circle cx="130" cy="150" r="7" fill="#F6ABA0"/>
-                        <path d="M75 340 l10 22 22 10 -22 10 -10 22 -10 -22 -22 -10 22 -10 z" fill="#14141C"/>
-                        <path d="M420 360 l6 13 13 6 -13 6 -6 13 -6 -13 -13 -6 13 -6 z" fill="#14141C"/>
-                        <circle cx="380" cy="370" r="6" fill="#F6ABA0"/>
+                        <circle class="float-1" cx="90" cy="120" r="12" fill="#14141C"/>
+                        <circle class="float-2" cx="130" cy="150" r="7" fill="#F6ABA0"/>
+                        <path class="float-3" d="M75 340 l10 22 22 10 -22 10 -10 22 -10 -22 -22 -10 22 -10 z" fill="#14141C"/>
+                        <path class="float-4" d="M420 360 l6 13 13 6 -13 6 -6 13 -6 -13 -13 -6 13 -6 z" fill="#14141C"/>
+                        <circle class="float-5" cx="380" cy="370" r="6" fill="#F6ABA0"/>
 
                         <!-- laptop -->
                         <g transform="translate(150,140)">
@@ -603,16 +625,20 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--red); outline-o
                         </g>
 
                         <!-- icon badges -->
-                        <g transform="translate(378,90)">
-                            <circle cx="0" cy="0" r="30" fill="#14141C"/>
-                            <path d="M-10 4 a10 10 0 1 1 20 0 c0 7 -10 12 -10 16 c0 -4 -10 -9 -10 -16 z" fill="#FFFFFF" transform="scale(0.7) translate(-2,-6)"/>
+                        <g class="float-6">
+                            <g transform="translate(378,90)">
+                                <circle cx="0" cy="0" r="30" fill="#14141C"/>
+                                <path d="M-10 4 a10 10 0 1 1 20 0 c0 7 -10 12 -10 16 c0 -4 -10 -9 -10 -16 z" fill="#FFFFFF" transform="scale(0.7) translate(-2,-6)"/>
+                            </g>
                         </g>
-                        <g transform="translate(440,150)">
-                            <circle cx="0" cy="0" r="26" fill="#F6ABA0"/>
-                            <circle cx="-6" cy="-6" r="3.4" fill="#14141C"/>
-                            <circle cx="8" cy="-2" r="3.4" fill="#14141C"/>
-                            <circle cx="-2" cy="9" r="3.4" fill="#14141C"/>
-                            <path d="M-6 -6 L8 -2 M8 -2 L-2 9 M-6 -6 L-2 9" stroke="#14141C" stroke-width="1.6"/>
+                        <g class="float-7">
+                            <g transform="translate(440,150)">
+                                <circle cx="0" cy="0" r="26" fill="#F6ABA0"/>
+                                <circle cx="-6" cy="-6" r="3.4" fill="#14141C"/>
+                                <circle cx="8" cy="-2" r="3.4" fill="#14141C"/>
+                                <circle cx="-2" cy="9" r="3.4" fill="#14141C"/>
+                                <path d="M-6 -6 L8 -2 M8 -2 L-2 9 M-6 -6 L-2 9" stroke="#14141C" stroke-width="1.6"/>
+                            </g>
                         </g>
                     </svg>
                 </div>
@@ -706,6 +732,36 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--red); outline-o
 
     <!-- Contact / Get in Touch (last) -->
     <section class="view" id="contact">
+        <div class="contact-bg" aria-hidden="true">
+            <svg viewBox="0 0 520 480" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+                <g stroke="#14141C" stroke-width="1.2" opacity="0.55">
+                    <line x1="260" y1="240" x2="500" y2="30"/>
+                    <line x1="260" y1="240" x2="510" y2="80"/>
+                    <line x1="260" y1="240" x2="500" y2="130"/>
+                    <line x1="260" y1="240" x2="505" y2="180"/>
+                    <line x1="260" y1="240" x2="495" y2="225"/>
+                    <line x1="260" y1="240" x2="510" y2="270"/>
+                    <line x1="260" y1="240" x2="495" y2="315"/>
+                    <line x1="260" y1="240" x2="505" y2="360"/>
+                    <line x1="260" y1="240" x2="490" y2="405"/>
+                    <line x1="260" y1="240" x2="470" y2="440"/>
+                    <line x1="260" y1="240" x2="330" y2="60"/>
+                    <line x1="260" y1="240" x2="370" y2="45"/>
+                    <line x1="260" y1="240" x2="410" y2="55"/>
+                    <line x1="260" y1="240" x2="440" y2="450"/>
+                    <line x1="260" y1="240" x2="400" y2="460"/>
+                    <line x1="260" y1="240" x2="360" y2="470"/>
+                    <line x1="260" y1="240" x2="320" y2="440"/>
+                    <line x1="260" y1="240" x2="290" y2="420"/>
+                </g>
+
+                <!-- large navy diamond -->
+                <path d="M260 100 L340 240 L260 380 L180 240 Z" fill="#0F0F1B"/>
+
+                <!-- small pink diamond -->
+                <path d="M175 330 L215 400 L175 470 L135 400 Z" fill="#F6ABA0"/>
+            </svg>
+        </div>
         <div class="content-section">
             <div class="section-header">
                 <span class="eyebrow-pill">Contact</span>
@@ -714,67 +770,34 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--red); outline-o
             </div>
 
             <div class="contact-grid">
-                <div>
-                    <div class="contact-toggle" id="contactToggle" role="group" aria-label="Message type">
-                        <button type="button" class="toggle-option active" data-mode="hi">
-                            <span class="radio-dot"></span>Say Hi
-                        </button>
-                        <button type="button" class="toggle-option" data-mode="collaborate">
-                            <span class="radio-dot"></span>Collaborate
-                        </button>
+                <div class="contact-toggle" id="contactToggle" role="group" aria-label="Message type">
+                    <button type="button" class="toggle-option active" data-mode="hi">
+                        <span class="radio-dot"></span>Say Hi
+                    </button>
+                    <button type="button" class="toggle-option" data-mode="collaborate">
+                        <span class="radio-dot"></span>Collaborate
+                    </button>
+                </div>
+
+                <form class="contact-form" id="contactForm">
+                    <div class="form-field">
+                        <label for="cf-name">Name</label>
+                        <input type="text" id="cf-name" name="name" placeholder="Name">
                     </div>
 
-                    <form class="contact-form" id="contactForm">
-                        <div class="form-field">
-                            <label for="cf-name">Name</label>
-                            <input type="text" id="cf-name" name="name" placeholder="Name">
-                        </div>
+                    <div class="form-field">
+                        <label for="cf-email">Email*</label>
+                        <input type="email" id="cf-email" name="email" placeholder="Email" required>
+                    </div>
 
-                        <div class="form-field">
-                            <label for="cf-email">Email*</label>
-                            <input type="email" id="cf-email" name="email" placeholder="Email" required>
-                        </div>
+                    <div class="form-field">
+                        <label for="cf-message">Message*</label>
+                        <textarea id="cf-message" name="message" placeholder="Message" required></textarea>
+                    </div>
 
-                        <div class="form-field">
-                            <label for="cf-message">Message*</label>
-                            <textarea id="cf-message" name="message" placeholder="Message" required></textarea>
-                        </div>
-
-                        <button type="submit" class="btn-send">Send Message</button>
-                        <p class="form-status" id="formStatus"></p>
-                    </form>
-                </div>
-
-                <div class="contact-art">
-                    <svg viewBox="0 0 520 480" xmlns="http://www.w3.org/2000/svg">
-                        <g stroke="#14141C" stroke-width="1.2" opacity="0.55">
-                            <line x1="260" y1="240" x2="500" y2="30"/>
-                            <line x1="260" y1="240" x2="510" y2="80"/>
-                            <line x1="260" y1="240" x2="500" y2="130"/>
-                            <line x1="260" y1="240" x2="505" y2="180"/>
-                            <line x1="260" y1="240" x2="495" y2="225"/>
-                            <line x1="260" y1="240" x2="510" y2="270"/>
-                            <line x1="260" y1="240" x2="495" y2="315"/>
-                            <line x1="260" y1="240" x2="505" y2="360"/>
-                            <line x1="260" y1="240" x2="490" y2="405"/>
-                            <line x1="260" y1="240" x2="470" y2="440"/>
-                            <line x1="260" y1="240" x2="330" y2="60"/>
-                            <line x1="260" y1="240" x2="370" y2="45"/>
-                            <line x1="260" y1="240" x2="410" y2="55"/>
-                            <line x1="260" y1="240" x2="440" y2="450"/>
-                            <line x1="260" y1="240" x2="400" y2="460"/>
-                            <line x1="260" y1="240" x2="360" y2="470"/>
-                            <line x1="260" y1="240" x2="320" y2="440"/>
-                            <line x1="260" y1="240" x2="290" y2="420"/>
-                        </g>
-
-                        <!-- large navy diamond -->
-                        <path d="M260 100 L340 240 L260 380 L180 240 Z" fill="#0F0F1B"/>
-
-                        <!-- small pink diamond -->
-                        <path d="M175 330 L215 400 L175 470 L135 400 Z" fill="#F6ABA0"/>
-                    </svg>
-                </div>
+                    <button type="submit" class="btn-send">Send Message</button>
+                    <p class="form-status" id="formStatus"></p>
+                </form>
             </div>
         </div>
     </section>
@@ -867,7 +890,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             /* TODO: replace with your real email address */
-            const to = 'your-email@example.com';
+            const to = 'me@unishbaskota.com.np';
             const subject = encodeURIComponent(`${mode} from ${name || 'your site'}`);
             const bodyLines = [
                 name ? `Name: ${name}` : null,
