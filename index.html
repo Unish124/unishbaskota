@@ -6,7 +6,7 @@
 <meta name="description" content="Unish Baskota — student, builder, and lifelong learner from Nepal.">
 <title>Unish Baskota — Portfolio</title>
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=Inter:wght@400;500;600&family=Caveat:wght@600;700&display=swap');
 
 :root {
     --white: #FFFFFF;
@@ -29,7 +29,7 @@ body {
     background-color: var(--white);
     color: var(--ink);
     line-height: 1.7;
-    padding-top: 104px;
+    padding-top: 96px;
 }
 
 h1, h2, h3, .brand, .pill, .nav-links button, .menu button {
@@ -40,18 +40,39 @@ a { color: inherit; }
 ::selection { background: var(--pink); color: var(--navy); }
 a:focus-visible, button:focus-visible { outline: 2px solid var(--red); outline-offset: 3px; }
 
-/* ---------- Navbar ---------- */
+/* ---------- Navbar (floating liquid-glass pill) ---------- */
 .navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: var(--white);
-    padding: 1.1rem 2.5rem;
     position: fixed;
-    top: 0;
-    width: 100%;
+    top: 18px;
+    left: 0;
+    right: 0;
     z-index: 1100;
-    border-bottom: 1px solid var(--gray-line);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 2rem;
+    pointer-events: none;
+}
+
+.navbar > * { pointer-events: auto; }
+
+.nav-pill {
+    display: flex;
+    align-items: center;
+    gap: 2.1rem;
+    padding: 0.6rem 0.65rem 0.6rem 1.5rem;
+    border-radius: 999px;
+    background: linear-gradient(180deg, rgba(255,255,255,0.82), rgba(255,255,255,0.52));
+    backdrop-filter: blur(22px) saturate(180%);
+    -webkit-backdrop-filter: blur(22px) saturate(180%);
+    border: 1px solid rgba(255,255,255,0.65);
+    box-shadow: 0 10px 30px rgba(15,15,27,0.12), inset 0 1px 0 rgba(255,255,255,0.6);
+    transition: box-shadow 0.35s ease, transform 0.35s ease;
+}
+
+.nav-pill:hover {
+    box-shadow: 0 16px 40px rgba(15,15,27,0.16), inset 0 1px 0 rgba(255,255,255,0.6);
+    transform: translateY(-1px);
 }
 
 .brand {
@@ -61,69 +82,103 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--red); outline-o
     font-weight: 700;
     font-size: 1.05rem;
     color: var(--ink);
+    white-space: nowrap;
 }
+
+.brand-short { display: none; }
 
 .nav-links {
     display: flex;
     align-items: center;
     list-style: none;
-    gap: 0.4rem;
+    gap: 0.3rem;
 }
 
 .nav-links button, .menu button {
-    font-size: 0.95rem;
+    font-size: 0.92rem;
     font-weight: 500;
     background: none;
     border: none;
     cursor: pointer;
-    color: var(--ink);
-    padding: 0.6rem 1.3rem;
+    color: var(--muted);
+    padding: 0.55rem 1.15rem;
     border-radius: 999px;
-    transition: background-color 0.2s ease, color 0.2s ease;
+    transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease;
 }
 
-.nav-links button:hover { background-color: var(--gray); }
-.nav-links button.active { background-color: var(--red); color: var(--white); }
+.nav-links button:hover { background-color: rgba(20, 20, 28, 0.06); color: var(--ink); }
+.nav-links button.active {
+    background-color: var(--white);
+    color: var(--ink);
+    font-weight: 600;
+    box-shadow: 0 6px 16px rgba(15, 15, 27, 0.14);
+    transform: translateY(-1px);
+}
 
 .nav-cta {
+    position: fixed;
+    top: 22px;
+    right: 2rem;
+    z-index: 1100;
     font-family: 'Poppins', sans-serif;
-    font-size: 0.9rem;
+    font-size: 0.88rem;
     font-weight: 600;
-    background: var(--white);
-    color: var(--ink);
-    border: 1.5px solid var(--ink);
+    background: rgba(15, 15, 27, 0.92);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    color: var(--white);
+    border: 1px solid rgba(255,255,255,0.12);
     border-radius: 999px;
-    padding: 0.65rem 1.4rem;
+    padding: 0.75rem 1.5rem;
     cursor: pointer;
-    transition: background-color 0.2s ease, color 0.2s ease;
+    box-shadow: 0 10px 26px rgba(15,15,27,0.25);
+    transition: background-color 0.3s ease, transform 0.25s ease, box-shadow 0.3s ease;
 }
 
-.nav-cta:hover { background-color: var(--ink); color: var(--white); }
+.nav-cta:hover {
+    background-color: var(--red);
+    transform: translateY(-2px);
+    box-shadow: 0 14px 32px rgba(239,62,62,0.3);
+}
 
 .hamburger {
     display: none;
+    position: fixed;
+    top: 26px;
+    right: 2rem;
+    z-index: 1200;
     flex-direction: column;
     justify-content: center;
+    align-items: center;
     gap: 5px;
     cursor: pointer;
-    z-index: 1200;
+    background: rgba(255,255,255,0.75);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255,255,255,0.6);
+    border-radius: 999px;
+    width: 46px;
+    height: 46px;
+    box-shadow: 0 8px 22px rgba(15,15,27,0.14);
 }
 
-.hamburger div { width: 26px; height: 3px; background-color: var(--ink); border-radius: 2px; transition: transform 0.3s ease, opacity 0.3s ease; }
+.hamburger div { width: 20px; height: 2.5px; background-color: var(--ink); border-radius: 2px; transition: transform 0.3s ease, opacity 0.3s ease; }
 .hamburger.active div:nth-child(1) { transform: rotate(45deg) translate(6px, 6px); }
 .hamburger.active div:nth-child(2) { opacity: 0; }
 .hamburger.active div:nth-child(3) { transform: rotate(-45deg) translate(6px, -6px); }
 
 .menu {
     position: fixed;
-    top: 74px;
-    right: 20px;
+    top: 80px;
+    right: 2rem;
     width: 220px;
     padding: 0.75rem;
-    background-color: var(--white);
-    border: 1px solid var(--gray-line);
-    border-radius: 16px;
-    box-shadow: var(--shadow);
+    background: linear-gradient(180deg, rgba(255,255,255,0.9), rgba(255,255,255,0.7));
+    backdrop-filter: blur(22px) saturate(180%);
+    -webkit-backdrop-filter: blur(22px) saturate(180%);
+    border: 1px solid rgba(255,255,255,0.65);
+    border-radius: 20px;
+    box-shadow: 0 16px 40px rgba(15, 15, 27, 0.16);
     display: none;
     flex-direction: column;
     gap: 0.3rem;
@@ -166,6 +221,53 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--red); outline-o
     gap: 3rem;
     align-items: center;
     width: 100%;
+}
+
+.greeting-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--gray);
+    color: var(--ink);
+    font-family: 'Caveat', cursive;
+    font-weight: 700;
+    font-size: 1.3rem;
+    padding: 0.55rem 1.4rem;
+    border-radius: 999px;
+    margin-bottom: 1.4rem;
+    transform: rotate(-2deg);
+    box-shadow: 0 8px 18px rgba(15, 15, 27, 0.08);
+    min-width: 8.5rem;
+    justify-content: center;
+}
+
+.greeting-pill .wave { display: inline-block; }
+
+.greeting-wrap {
+    position: relative;
+    display: inline-block;
+}
+
+.greeting-scribble {
+    position: absolute;
+    top: -16px;
+    left: -14px;
+    width: calc(100% + 28px);
+    height: calc(100% + 32px);
+    pointer-events: none;
+    z-index: -1;
+}
+
+.greeting-pill #greetingText {
+    display: inline-block;
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 0.45s ease, transform 0.45s ease;
+}
+
+.greeting-pill #greetingText.swap {
+    opacity: 0;
+    transform: translateY(8px);
 }
 
 .hero h2 {
@@ -274,94 +376,160 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--red); outline-o
     font-size: 1rem;
 }
 
-/* ---------- Card grid (Projects / Files) ---------- */
-.card-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 1.75rem;
-}
-
-.card {
-    border-radius: 20px;
-    padding: 2.1rem 2rem 2rem;
-    min-height: 280px;
+/* ---------- Project cards (Selected work) ---------- */
+.project-list {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    position: relative;
-    overflow: hidden;
+    gap: 3.25rem;
 }
 
-.card.gray { background: var(--gray); }
-.card.red { background: var(--red); }
-.card.navy { background: var(--navy); }
+.project-card {
+    position: relative;
+    border-radius: 24px;
+    background: var(--gray);
+    border: 1px solid var(--gray-line);
+    overflow: hidden;
+    display: grid;
+    grid-template-columns: 1.05fr 1fr;
+    min-height: 400px;
+}
 
-.card .pill-label {
-    display: inline-block;
-    align-self: flex-start;
+.project-card::after {
+    content: '';
+    position: absolute;
+    left: 18px;
+    right: 18px;
+    bottom: -10px;
+    height: 16px;
+    border-radius: 0 0 18px 18px;
+    z-index: -1;
+}
+
+.project-card.accent-red::after { background: var(--red); }
+.project-card.accent-navy::after { background: var(--navy); }
+.project-card.accent-pink::after { background: var(--pink); }
+
+.project-card.reverse { grid-template-columns: 1fr 1.05fr; }
+.project-card.reverse .project-text { order: 2; }
+.project-card.reverse .project-visual { order: 1; }
+
+.project-text {
+    padding: 2.75rem 3rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1.25rem;
+}
+
+.project-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+}
+
+.project-tag {
     font-family: 'Poppins', sans-serif;
     font-weight: 600;
+    font-size: 0.78rem;
+    padding: 0.45rem 0.95rem;
+    border-radius: 999px;
+}
+
+.project-tag.solid { background: var(--ink); color: var(--white); }
+.project-tag.outline { background: transparent; color: var(--ink); border: 1.4px solid var(--gray-line); }
+
+.project-text h3 {
+    font-size: clamp(1.4rem, 2.4vw, 1.8rem);
+    font-weight: 700;
+    line-height: 1.25;
+    color: var(--ink);
+}
+
+.project-text p {
     font-size: 0.95rem;
-    padding: 0.65rem 1.2rem;
-    border-radius: 999px;
-    margin-bottom: 1.5rem;
+    color: var(--muted);
+    max-width: 440px;
 }
 
-.card.gray .pill-label { background: var(--red); color: var(--white); }
-.card.red .pill-label { background: var(--navy); color: var(--white); }
-.card.navy .pill-label { background: var(--red); color: var(--white); }
-
-.card .card-icon {
-    align-self: center;
-    margin: 0.5rem 0 1.5rem;
-    opacity: 0.9;
+.project-features {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-top: 0.25rem;
 }
 
-.card p {
-    font-size: 0.92rem;
-}
-
-.card.gray p { color: var(--muted); }
-.card.red p { color: rgba(255,255,255,0.9); }
-.card.navy p { color: rgba(255,255,255,0.75); }
-
-.learn-more {
-    margin-top: 1.5rem;
-    display: inline-flex;
+.project-features li {
+    list-style: none;
+    display: flex;
     align-items: center;
-    flex-wrap: nowrap;
-    white-space: nowrap;
-    gap: 0.75rem;
-    background: var(--navy);
-    color: var(--white);
-    border: none;
-    border-radius: 999px;
-    padding: 0.5rem 1.3rem 0.5rem 0.5rem;
+    gap: 0.6rem;
     font-family: 'Poppins', sans-serif;
     font-size: 0.85rem;
     font-weight: 600;
-    text-decoration: none;
-    align-self: flex-start;
-    cursor: pointer;
-    transition: background-color 0.2s ease;
+    color: var(--ink);
 }
 
-.learn-more:hover { background-color: var(--red-dark); }
-
-.learn-more .arrow-dot {
-    width: 26px;
-    height: 26px;
-    flex: 0 0 26px;
+.project-features li::before {
+    content: '';
+    width: 7px;
+    height: 7px;
     border-radius: 50%;
     background: var(--red);
-    display: flex;
-    align-items: center;
-    justify-content: center;
     flex-shrink: 0;
 }
 
-.card.red .learn-more, .card.navy .learn-more { background: var(--white); color: var(--navy); }
-.card.red .learn-more:hover, .card.navy .learn-more:hover { background: var(--gray); }
+.project-link {
+    margin-top: 0.5rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: var(--ink);
+    text-decoration: underline;
+    text-underline-offset: 4px;
+    align-self: flex-start;
+}
+
+.project-link:hover { color: var(--red); }
+
+.project-visual {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.project-visual.bg-red { background: var(--red); }
+.project-visual.bg-navy { background: var(--navy); }
+.project-visual.bg-pink { background: var(--pink); }
+
+.project-visual .visual-icon {
+    position: relative;
+    z-index: 1;
+    width: 140px;
+    height: 140px;
+}
+
+.project-visual .spark {
+    position: absolute;
+    opacity: 0.5;
+}
+
+@media (max-width: 900px) {
+    .project-card, .project-card.reverse {
+        grid-template-columns: 1fr;
+    }
+    .project-card.reverse .project-text,
+    .project-card.reverse .project-visual,
+    .project-text, .project-visual {
+        order: initial;
+    }
+    .project-visual { min-height: 220px; padding: 2rem 0; }
+    .project-text { padding: 2.25rem 1.75rem; }
+}
 
 .section-note {
     margin-top: 2.5rem;
@@ -373,30 +541,173 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--red); outline-o
 }
 
 /* ---------- About Me ---------- */
-.about-block {
-    display: flex;
-    gap: 2.5rem;
-    flex-wrap: wrap;
-    align-items: flex-start;
-    margin-bottom: 3rem;
-    padding-bottom: 3rem;
-    border-bottom: 1px solid var(--gray-line);
+.about-panel {
+    position: relative;
+    background: var(--navy);
+    border-radius: 32px;
+    padding: 4rem 2rem 3.5rem;
+    overflow: hidden;
+    text-align: center;
 }
 
-.about-block:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+.about-tags {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1.1rem;
+    margin-bottom: 2.5rem;
+}
 
-.about-text { flex: 1 1 320px; }
-.about-text h3 { font-size: 1.3rem; font-weight: 600; margin-bottom: 0.85rem; color: var(--ink); }
-.about-text p { color: var(--muted); font-size: 1rem; }
+.tape-tag {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+    font-family: 'Caveat', cursive;
+    font-weight: 700;
+    font-size: 1.15rem;
+    padding: 0.55rem 1.3rem 0.55rem 2.1rem;
+    border-radius: 6px;
+    box-shadow: 0 8px 18px rgba(0,0,0,0.25);
+}
 
-.about-gallery { flex: 1 1 320px; display: flex; flex-wrap: wrap; gap: 0.75rem; }
+.tape-tag .tape-dot {
+    position: absolute;
+    left: -10px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
 
-.about-gallery img {
-    width: 200px;
-    height: 150px;
-    object-fit: cover;
-    border-radius: 14px;
-    box-shadow: var(--shadow);
+.tape-tag.tag-a { background: var(--gray); color: var(--ink); transform: rotate(-4deg); }
+.tape-tag.tag-a .tape-dot { background: var(--red); }
+.tape-tag.tag-b { background: var(--red); color: var(--white); transform: rotate(3deg); }
+.tape-tag.tag-b .tape-dot { background: var(--navy); border: 2px solid rgba(255,255,255,0.5); }
+.tape-tag.tag-c { background: var(--white); color: var(--ink); transform: rotate(-2deg); }
+.tape-tag.tag-c .tape-dot { background: var(--ink); }
+
+.about-heading h2 {
+    font-family: 'Poppins', sans-serif;
+    font-size: clamp(2rem, 4.4vw, 3.1rem);
+    font-weight: 700;
+    color: var(--white);
+    line-height: 1.15;
+}
+
+.about-heading h2 .accent { color: var(--red); }
+
+.about-heading p {
+    margin-top: 0.9rem;
+    color: rgba(255,255,255,0.6);
+    font-size: 1rem;
+}
+
+.about-bio {
+    max-width: 640px;
+    margin: 2.25rem auto 0;
+    position: relative;
+}
+
+.about-bio p {
+    color: rgba(255,255,255,0.82);
+    font-size: 1.02rem;
+    line-height: 1.75;
+}
+
+.about-bio p strong { color: var(--white); }
+
+.about-scribble {
+    position: absolute;
+    right: -46px;
+    bottom: -34px;
+    width: 70px;
+    height: auto;
+    opacity: 0.9;
+}
+
+.about-gallery-row {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1.75rem;
+    margin-top: 3.5rem;
+    position: relative;
+}
+
+.photo-slot {
+    position: relative;
+    width: 168px;
+    z-index: 1;
+    transition: transform 0.7s cubic-bezier(0.19, 1, 0.22, 1);
+    transform-origin: center center;
+}
+
+.photo-slot:hover { transform: scale(1.1) !important; z-index: 5; }
+
+.photo-slot.tilt-a { transform: rotate(-5deg); }
+.photo-slot.tilt-b { transform: rotate(3deg); }
+.photo-slot.tilt-c { transform: rotate(-2deg); }
+
+.photo-slot .photo-frame {
+    position: relative;
+    z-index: 2;
+    aspect-ratio: 4 / 5;
+    border-radius: 16px;
+    background: var(--gray);
+    box-shadow: 0 14px 26px rgba(0,0,0,0.35);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.photo-slot .photo-frame svg { width: 46%; height: 46%; }
+.photo-slot .photo-frame img { width: 100%; height: 100%; object-fit: cover; }
+
+.photo-bubble {
+    position: absolute;
+    top: 22px;
+    left: 50%;
+    transform: translate(-50%, 0) scale(0.82);
+    background: var(--gray);
+    color: var(--ink);
+    font-family: 'Caveat', cursive;
+    font-weight: 700;
+    font-size: 1.15rem;
+    padding: 0.5rem 1.15rem;
+    border-radius: 999px;
+    white-space: nowrap;
+    opacity: 0;
+    z-index: 1;
+    pointer-events: none;
+    box-shadow: 0 10px 18px rgba(0,0,0,0.35);
+    transition: opacity 0.4s ease, transform 0.55s cubic-bezier(0.19, 1, 0.22, 1), z-index 0s linear 0.12s;
+}
+
+.photo-slot:hover .photo-bubble {
+    opacity: 1;
+    transform: translate(-50%, -38px) scale(1);
+    z-index: 30;
+    transition: opacity 0.4s ease, transform 0.55s cubic-bezier(0.19, 1, 0.22, 1), z-index 0s linear 0s;
+}
+
+.about-signature {
+    margin-top: 3.5rem;
+    font-family: 'Caveat', cursive;
+    font-weight: 700;
+    font-size: clamp(2.2rem, 5vw, 3.4rem);
+    color: var(--white);
+}
+
+@media (max-width: 700px) {
+    .about-panel { padding: 3rem 1.25rem 3rem; }
+    .photo-bubble { display: none; }
 }
 
 /* ---------- Contact / Get in Touch ---------- */
@@ -415,6 +726,123 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--red); outline-o
 
 .contact-grid {
     max-width: 560px;
+    opacity: 0;
+    transform: translateY(14px);
+    pointer-events: none;
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.contact-grid.show {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+
+.coffee-heading {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    font-size: 1.25rem;
+    color: var(--ink);
+    margin-bottom: 1.4rem;
+}
+
+.coffee-card {
+    display: flex;
+    align-items: center;
+    gap: 0.9rem;
+    background: var(--white);
+    border: 1px solid var(--gray-line);
+    border-radius: 20px;
+    padding: 1.25rem 1.4rem;
+    box-shadow: var(--shadow);
+    max-width: 560px;
+}
+
+.coffee-avatar {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: var(--navy);
+    color: var(--white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    font-size: 0.9rem;
+    flex-shrink: 0;
+}
+
+.coffee-bubble {
+    background: var(--gray);
+    border-radius: 999px;
+    padding: 0.85rem 1.2rem;
+    display: inline-flex;
+    align-items: center;
+    min-height: 1.3rem;
+}
+
+.coffee-typing { display: flex; gap: 5px; align-items: center; }
+
+.coffee-typing span {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--muted);
+    animation: typingBounce 1.1s infinite ease-in-out;
+}
+
+.coffee-typing span:nth-child(2) { animation-delay: 0.15s; }
+.coffee-typing span:nth-child(3) { animation-delay: 0.3s; }
+
+@keyframes typingBounce {
+    0%, 60%, 100% { transform: translateY(0); opacity: 0.4; }
+    30% { transform: translateY(-5px); opacity: 1; }
+}
+
+.coffee-message {
+    display: none;
+    opacity: 0;
+    transform: translateY(6px);
+    font-family: 'Inter', sans-serif;
+    font-size: 0.95rem;
+    color: var(--ink);
+    transition: opacity 0.45s ease, transform 0.45s ease;
+}
+
+.coffee-message.show { opacity: 1; transform: translateY(0); }
+
+.coffee-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.85rem;
+    margin: 1.4rem 0 2.75rem;
+    opacity: 0;
+    transform: translateY(8px);
+    pointer-events: none;
+    transition: opacity 0.45s ease, transform 0.45s ease;
+}
+
+.coffee-actions.show { opacity: 1; transform: translateY(0); pointer-events: auto; }
+
+.coffee-btn {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    font-size: 0.9rem;
+    background: var(--white);
+    color: var(--ink);
+    border: 1.5px solid var(--gray-line);
+    border-radius: 999px;
+    padding: 0.75rem 1.4rem;
+    cursor: pointer;
+    transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease, transform 0.15s ease;
+}
+
+.coffee-btn:hover {
+    background-color: var(--red);
+    color: var(--white);
+    border-color: var(--red);
+    transform: translateY(-2px);
 }
 
 .contact-toggle {
@@ -532,16 +960,19 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--red); outline-o
 /* ---------- Footer ---------- */
 .footer {
     text-align: center;
-    padding: 2rem;
+    padding: 0.6rem 1rem;
     background-color: var(--navy);
     color: rgba(255,255,255,0.65);
-    font-size: 0.85rem;
+    font-size: 0.75rem;
 }
 
 /* ---------- Responsive ---------- */
 @media (max-width: 900px) {
     .nav-links, .nav-cta { display: none; }
     .hamburger { display: flex; }
+    .brand-full { display: none; }
+    .brand-short { display: inline; }
+    .nav-pill { padding: 0.65rem 1.35rem; gap: 0; }
     .hero-grid { grid-template-columns: 1fr; }
     .hero-art { order: -1; max-width: 320px; margin: 0 auto; }
 }
@@ -561,18 +992,21 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--red); outline-o
 
 <!-- Navigation Bar -->
 <nav class="navbar">
-    <div class="brand">
-        Unish Baskota
+    <div class="nav-pill">
+        <div class="brand">
+            <span class="brand-full">Unish Baskota</span>
+            <span class="brand-short">UB</span>
+        </div>
+        <ul class="nav-links">
+            <li><button type="button" data-target="home">Home</button></li>
+            <li><button type="button" data-target="projects">Projects</button></li>
+            <li><button type="button" data-target="about">About Me</button></li>
+            <li><button type="button" data-target="contact">Contact</button></li>
+        </ul>
     </div>
     <div class="hamburger" id="hamburger" aria-label="Open menu" role="button" tabindex="0">
         <div></div><div></div><div></div>
     </div>
-    <ul class="nav-links">
-        <li><button type="button" data-target="home">Home</button></li>
-        <li><button type="button" data-target="projects">Projects</button></li>
-        <li><button type="button" data-target="about">About Me</button></li>
-        <li><button type="button" data-target="contact">Contact</button></li>
-    </ul>
     <button type="button" class="nav-cta" data-target="contact">Get in touch</button>
 </nav>
 
@@ -593,14 +1027,13 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--red); outline-o
         <div class="hero">
             <div class="hero-grid">
                 <div>
+                    <span class="greeting-wrap">
+                        <span class="greeting-pill"><span class="wave">👋</span> <span id="greetingText">Namaste 🙏</span></span>
+                    </span>
                     <h2>Turning <span class="accent">curiosity</span><br>into working <span class="accent">code</span><br>and real projects</h2>
-                    <p class="hero-content">I'm a class 12 student from Nepal who likes figuring out how things work, then building refined tools that solve real problems &mdash; from automating paperwork to simplifying everyday tasks.</p>
+                    <p class="hero-content">I&rsquo;m Unish Baskota from Nepal, currently pursuing Class 12. I enjoy learning how things work and building things that are actually useful. I love exploring technology and building tools that have a real impact on people&rsquo;s everyday lives and make life easier.</p>
                     <div class="hero-actions">
                         <button type="button" class="btn-primary" data-target="projects">View my projects</button>
-                    </div>
-                    <div class="chip-row">
-                        <span class="chip">From <strong>Nepal</strong></span>
-                        <span class="chip">Interest <strong>Tech &amp; Science</strong></span>
                     </div>
                 </div>
                 <div class="hero-art">
@@ -655,53 +1088,128 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--red); outline-o
                 <p>A few tools I've made while learning to solve real, everyday problems with code.</p>
             </div>
 
-            <div class="card-grid">
-                <div class="card gray">
-                    <span class="pill-label">Chemsketch</span>
-                    <svg class="card-icon" width="64" height="64" viewBox="0 0 64 64" fill="none">
-                        <path d="M26 10h12" stroke="#14141C" stroke-width="2.5" stroke-linecap="round"/>
-                        <path d="M28 10v12l-13 24a4 4 0 0 0 3.5 6h27a4 4 0 0 0 3.5-6l-13-24V10" stroke="#14141C" stroke-width="2.5" fill="none" stroke-linejoin="round"/>
-                        <path d="M21 40h22" stroke="#14141C" stroke-width="2.5"/>
-                        <circle cx="27" cy="47" r="2.4" fill="#EF3E3E"/>
-                        <circle cx="35" cy="51" r="2.4" fill="#EF3E3E"/>
-                        <circle cx="40" cy="45" r="2.4" fill="#EF3E3E"/>
-                    </svg>
-                    <p>A tool for drawing chemistry formulas &mdash; chemical structures, molecules, and reaction diagrams.</p>
-                    <a href="https://chemsketch.unish.info.np" target="_blank" rel="noopener" class="learn-more"><span class="arrow-dot">&#8599;</span><span>View project</span></a>
-                </div>
+            <div class="project-list">
 
-                <div class="card gray">
-                    <span class="pill-label">SQL Password Changer</span>
-                    <svg class="card-icon" width="64" height="64" viewBox="0 0 64 64" fill="none">
-                        <rect x="14" y="28" width="36" height="24" rx="5" stroke="#14141C" stroke-width="2.5"/>
-                        <path d="M22 28v-8a10 10 0 0 1 20 0v8" stroke="#14141C" stroke-width="2.5" fill="none"/>
-                        <circle cx="32" cy="40" r="3.5" fill="#EF3E3E"/>
-                    </svg>
-                    <p>A tool for resetting or changing SQL database passwords.</p>
-                    <a href="#" class="learn-more"><span class="arrow-dot">&#8599;</span><span>View project</span></a>
-                </div>
+                <!-- Chemsketch -->
+                <article class="project-card accent-red">
+                    <div class="project-text">
+                        <div class="project-tags">
+                            <span class="project-tag solid">Chemsketch</span>
+                            <span class="project-tag outline">Chemistry</span>
+                        </div>
+                        <h3>A browser tool for drawing chemistry formulas</h3>
+                        <p>Chemical structures, molecules, and reaction diagrams &mdash; without wrestling with clunky desktop software.</p>
+                        <ul class="project-features">
+                            <li>Molecular structures</li>
+                            <li>Reaction diagrams</li>
+                        </ul>
+                        <a href="https://chemsketch.unish.info.np" target="_blank" rel="noopener" class="project-link">View project &rarr;</a>
+                    </div>
+                    <div class="project-visual bg-red">
+                        <svg class="spark" width="26" height="26" viewBox="0 0 26 26" style="top:14%; left:18%;"><path d="M13 0 L16 10 L26 13 L16 16 L13 26 L10 16 L0 13 L10 10 Z" fill="#FFFFFF"/></svg>
+                        <svg class="spark" width="14" height="14" viewBox="0 0 14 14" style="bottom:16%; right:20%;"><circle cx="7" cy="7" r="7" fill="#0F0F1B"/></svg>
+                        <svg class="visual-icon" viewBox="0 0 64 64" fill="none">
+                            <path d="M27 7.5h10" stroke="#FFFFFF" stroke-width="2.4" stroke-linecap="round"/>
+                            <path d="M29 7.5v11.8" stroke="#FFFFFF" stroke-width="2.4" stroke-linecap="round"/>
+                            <path d="M35 7.5v11.8" stroke="#FFFFFF" stroke-width="2.4" stroke-linecap="round"/>
+                            <path d="M29 19.3L17.3 41.8a5 5 0 0 0 4.4 7.3h20.6a5 5 0 0 0 4.4-7.3L35 19.3" stroke="#FFFFFF" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/>
+                            <path d="M20.6 37.5c2.7 1.8 6.4 2.8 11.4 2.8s8.7-1 11.4-2.8l2.7 5.2a3.1 3.1 0 0 1-2.7 4.5H20.6a3.1 3.1 0 0 1-2.7-4.5l2.7-5.2z" fill="rgba(255,255,255,0.24)"/>
+                            <circle cx="29.5" cy="42.5" r="1.6" fill="#0F0F1B"/>
+                            <circle cx="35" cy="45" r="1.3" fill="#0F0F1B"/>
+                            <circle cx="32" cy="37.5" r="1" fill="#F6ABA0"/>
+                            <g transform="translate(45,17)">
+                                <polygon points="0,-8.5 7.4,-4.25 7.4,4.25 0,8.5 -7.4,4.25 -7.4,-4.25" stroke="#FFFFFF" stroke-width="1.6" fill="none" stroke-linejoin="round"/>
+                                <line x1="0" y1="-8.5" x2="0" y2="-14" stroke="#FFFFFF" stroke-width="1.6" stroke-linecap="round"/>
+                                <circle cx="0" cy="-8.5" r="1.5" fill="#FFFFFF"/>
+                                <circle cx="7.4" cy="-4.25" r="1.5" fill="#FFFFFF"/>
+                                <circle cx="7.4" cy="4.25" r="1.5" fill="#FFFFFF"/>
+                                <circle cx="0" cy="8.5" r="1.5" fill="#FFFFFF"/>
+                                <circle cx="-7.4" cy="4.25" r="1.5" fill="#FFFFFF"/>
+                                <circle cx="-7.4" cy="-4.25" r="1.5" fill="#FFFFFF"/>
+                                <circle cx="0" cy="-14" r="1.7" fill="#F6ABA0"/>
+                            </g>
+                        </svg>
+                    </div>
+                </article>
 
-                <div class="card red">
-                    <span class="pill-label">IDM Reset</span>
-                    <svg class="card-icon" width="64" height="64" viewBox="0 0 64 64" fill="none">
-                        <path d="M32 10v28" stroke="#FFFFFF" stroke-width="2.5"/>
-                        <path d="M20 28l12 14 12-14" stroke="#FFFFFF" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-                        <rect x="14" y="46" width="36" height="8" rx="4" fill="#0F0F1B"/>
-                    </svg>
-                    <p>A tool for resetting the Internet Download Manager trial.</p>
-                    <a href="#" class="learn-more"><span class="arrow-dot">&#8599;</span><span>View project</span></a>
-                </div>
+                <!-- SQL Password Changer -->
+                <article class="project-card accent-navy reverse">
+                    <div class="project-text">
+                        <div class="project-tags">
+                            <span class="project-tag solid">SQL Password Changer</span>
+                            <span class="project-tag outline">Utility</span>
+                        </div>
+                        <h3>Resetting SQL database passwords, simplified</h3>
+                        <p>A tool for resetting or changing SQL database passwords without digging through server configs.</p>
+                        <ul class="project-features">
+                            <li>Password reset</li>
+                            <li>Database utility</li>
+                        </ul>
+                        <a href="#" class="project-link">View project &rarr;</a>
+                    </div>
+                    <div class="project-visual bg-navy">
+                        <svg class="spark" width="20" height="20" viewBox="0 0 20 20" style="top:18%; right:16%;"><circle cx="10" cy="10" r="10" fill="#F6ABA0"/></svg>
+                        <svg class="spark" width="30" height="30" viewBox="0 0 30 30" style="bottom:14%; left:14%;"><path d="M15 0 L18.5 11.5 L30 15 L18.5 18.5 L15 30 L11.5 18.5 L0 15 L11.5 11.5 Z" fill="#EF3E3E"/></svg>
+                        <svg class="visual-icon" viewBox="0 0 64 64" fill="none">
+                            <rect x="14" y="28" width="36" height="24" rx="5" stroke="#FFFFFF" stroke-width="2.5"/>
+                            <path d="M22 28v-8a10 10 0 0 1 20 0v8" stroke="#FFFFFF" stroke-width="2.5" fill="none"/>
+                            <circle cx="32" cy="40" r="3.6" fill="#EF3E3E"/>
+                        </svg>
+                    </div>
+                </article>
 
-                <div class="card navy">
-                    <span class="pill-label">.np Cover Letter Generator</span>
-                    <svg class="card-icon" width="64" height="64" viewBox="0 0 64 64" fill="none">
-                        <path d="M16 10h24l10 10v34a2 2 0 0 1-2 2H16a2 2 0 0 1-2-2V12a2 2 0 0 1 2-2z" stroke="#EF3E3E" stroke-width="2.5"/>
-                        <path d="M40 10v10h10" stroke="#EF3E3E" stroke-width="2.5" fill="none"/>
-                        <path d="M22 34h20M22 41h20M22 27h12" stroke="#EF3E3E" stroke-width="2.5" stroke-linecap="round"/>
-                    </svg>
-                    <p>A tool that generates the cover letter needed to register a .np domain.</p>
-                    <a href="https://coverletter.unish.info.np" target="_blank" rel="noopener" class="learn-more"><span class="arrow-dot">&#8599;</span><span>View project</span></a>
-                </div>
+                <!-- IDM Reset -->
+                <article class="project-card accent-pink">
+                    <div class="project-text">
+                        <div class="project-tags">
+                            <span class="project-tag solid">IDM Reset</span>
+                            <span class="project-tag outline">Utility</span>
+                        </div>
+                        <h3>Resetting the IDM trial period</h3>
+                        <p>A tool for resetting the Internet Download Manager trial so it keeps working without a reinstall.</p>
+                        <ul class="project-features">
+                            <li>Trial reset</li>
+                            <li>No reinstall needed</li>
+                        </ul>
+                        <a href="#" class="project-link">View project &rarr;</a>
+                    </div>
+                    <div class="project-visual bg-pink">
+                        <svg class="spark" width="16" height="16" viewBox="0 0 16 16" style="top:16%; left:20%;"><circle cx="8" cy="8" r="8" fill="#0F0F1B"/></svg>
+                        <svg class="spark" width="24" height="24" viewBox="0 0 24 24" style="bottom:18%; right:16%;"><path d="M12 0 L14.8 9.2 L24 12 L14.8 14.8 L12 24 L9.2 14.8 L0 12 L9.2 9.2 Z" fill="#FFFFFF"/></svg>
+                        <svg class="visual-icon" viewBox="0 0 64 64" fill="none">
+                            <path d="M32 10v28" stroke="#14141C" stroke-width="2.5"/>
+                            <path d="M20 28l12 14 12-14" stroke="#14141C" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+                            <rect x="14" y="46" width="36" height="8" rx="4" fill="#0F0F1B"/>
+                        </svg>
+                    </div>
+                </article>
+
+                <!-- .np Cover Letter Generator -->
+                <article class="project-card accent-red reverse">
+                    <div class="project-text">
+                        <div class="project-tags">
+                            <span class="project-tag solid">.np Cover Letter Generator</span>
+                            <span class="project-tag outline">.np Domain</span>
+                        </div>
+                        <h3>Generating the cover letter required for .np domains</h3>
+                        <p>A tool that generates the cover letter needed to register a .np domain, so it's not written from scratch every time.</p>
+                        <ul class="project-features">
+                            <li>Auto-generated letter</li>
+                            <li>.np domain registration</li>
+                        </ul>
+                        <a href="https://coverletter.unish.info.np" target="_blank" rel="noopener" class="project-link">View project &rarr;</a>
+                    </div>
+                    <div class="project-visual bg-red">
+                        <svg class="spark" width="18" height="18" viewBox="0 0 18 18" style="top:20%; right:18%;"><circle cx="9" cy="9" r="9" fill="#0F0F1B"/></svg>
+                        <svg class="spark" width="26" height="26" viewBox="0 0 26 26" style="bottom:16%; left:16%;"><path d="M13 0 L16 10 L26 13 L16 16 L13 26 L10 16 L0 13 L10 10 Z" fill="#FFFFFF"/></svg>
+                        <svg class="visual-icon" viewBox="0 0 64 64" fill="none">
+                            <path d="M16 10h24l10 10v34a2 2 0 0 1-2 2H16a2 2 0 0 1-2-2V12a2 2 0 0 1 2-2z" stroke="#FFFFFF" stroke-width="2.5"/>
+                            <path d="M40 10v10h10" stroke="#FFFFFF" stroke-width="2.5" fill="none"/>
+                            <path d="M22 34h20M22 41h20M22 27h12" stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                </article>
+
             </div>
         </div>
     </section>
@@ -709,23 +1217,74 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--red); outline-o
     <!-- About Me -->
     <section class="view" id="about">
         <div class="content-section">
-            <div class="section-header">
-                <span class="eyebrow-pill">About Me</span>
-                <h2>A bit about my journey</h2>
-            </div>
+            <div class="about-panel">
 
-            <div class="about-block">
-                <div class="about-text">
-                    <h3>Early Beginnings</h3>
-                    <p>My name is Unish Baskota, and I was born in Nepal. I am currently studying in class 12. From a young age, I developed a passion for technology, science, and computers. I have always been curious about how things work and love learning new ways to solve problems using technology. This curiosity has driven me to work on various projects to enhance my knowledge and skills.</p>
+                <div class="about-tags">
+                    <span class="tape-tag tag-a">
+                        <span class="tape-dot"></span>Builder
+                    </span>
+                    <span class="tape-tag tag-b">
+                        <span class="tape-dot"></span>Curious
+                    </span>
+                    <span class="tape-tag tag-c">
+                        <span class="tape-dot"></span>From Nepal
+                    </span>
                 </div>
-            </div>
 
-            <div class="about-block">
-                <div class="about-text">
-                    <h3>Me Over the Years</h3>
-                    <p>From exploring basic programming to working on advanced tools, my journey has been about growth. With each project, I&rsquo;ve gained valuable skills that have shaped who I am today.</p>
+                <div class="about-heading">
+                    <h2>Beyond the <span class="accent">code</span></h2>
+                    <p>A quick look at what drives me beyond just writing code.</p>
                 </div>
+
+                <div class="about-bio">
+                    <p>I&rsquo;m Unish Baskota, a Class 12 student from Nepal with a <strong>constant curiosity</strong> for how things work. From exploring basic programming to building advanced tools, my journey has been about <strong>growth</strong> &mdash; each project teaching me something new and shaping who I am today. I care about building things that are <strong>actually useful</strong> and make everyday life a little easier.</p>
+                    <svg class="about-scribble" viewBox="0 0 80 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M6 8c14 0 14 14 28 14s14-14 28-14c8 0 12 6 12 14 0 12-10 22-22 22H16C8 44 2 36 2 26" stroke="#EF3E3E" stroke-width="3.5" stroke-linecap="round" fill="none"/>
+                    </svg>
+                </div>
+
+                <div class="about-gallery-row">
+                    <div class="photo-slot tilt-a">
+                        <span class="photo-bubble">Always tinkering</span>
+                        <!-- Swap this SVG for <img src="your-photo.jpg" alt="..."> when ready -->
+                        <div class="photo-frame">
+                            <svg viewBox="0 0 64 64" fill="none">
+                                <rect x="4" y="14" width="56" height="40" rx="6" stroke="#14141C" stroke-width="2.5"/>
+                                <circle cx="20" cy="26" r="5" stroke="#14141C" stroke-width="2.5"/>
+                                <path d="M4 46l14-14 12 10 10-8 20 16" stroke="#14141C" stroke-width="2.5" fill="none" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                    </div>
+
+                    <div class="photo-slot tilt-b">
+                        <span class="photo-bubble">Curious by nature</span>
+                        <!-- Swap this SVG for <img src="your-photo.jpg" alt="..."> when ready -->
+                        <div class="photo-frame">
+                            <svg viewBox="0 0 64 64" fill="none">
+                                <path d="M26 10h12" stroke="#14141C" stroke-width="2.5" stroke-linecap="round"/>
+                                <path d="M28 10v12l-13 24a4 4 0 0 0 3.5 6h27a4 4 0 0 0 3.5-6l-13-24V10" stroke="#14141C" stroke-width="2.5" fill="none" stroke-linejoin="round"/>
+                                <path d="M21 40h22" stroke="#14141C" stroke-width="2.5"/>
+                                <circle cx="27" cy="47" r="2.4" fill="#EF3E3E"/>
+                                <circle cx="35" cy="51" r="2.4" fill="#EF3E3E"/>
+                                <circle cx="40" cy="45" r="2.4" fill="#EF3E3E"/>
+                            </svg>
+                        </div>
+                    </div>
+
+                    <div class="photo-slot tilt-c">
+                        <span class="photo-bubble">Nepal, always home</span>
+                        <!-- Swap this SVG for <img src="your-photo.jpg" alt="..."> when ready -->
+                        <div class="photo-frame">
+                            <svg viewBox="0 0 64 64" fill="none">
+                                <path d="M6 50L24 20l10 16 8-10 16 24" stroke="#14141C" stroke-width="2.5" fill="none" stroke-linejoin="round" stroke-linecap="round"/>
+                                <path d="M4 50h56" stroke="#14141C" stroke-width="2.5" stroke-linecap="round"/>
+                                <circle cx="46" cy="16" r="6" stroke="#EF3E3E" stroke-width="2.5"/>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+
+                <p class="about-signature">Unish Baskota</p>
             </div>
         </div>
     </section>
@@ -766,7 +1325,23 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--red); outline-o
             <div class="section-header">
                 <span class="eyebrow-pill">Contact</span>
                 <h2>Get in touch</h2>
-                <p>Have a project, a question, or just want to say hi? Pick an option below and send a message.</p>
+            </div>
+
+            <h3 class="coffee-heading">Let's have coffee?</h3>
+
+            <div class="coffee-card" id="coffeeCard">
+                <div class="coffee-avatar">UB</div>
+                <div class="coffee-bubble">
+                    <div class="coffee-typing" id="coffeeTyping">
+                        <span></span><span></span><span></span>
+                    </div>
+                    <div class="coffee-message" id="coffeeMessage">Want to build something together, or just want to say hi?</div>
+                </div>
+            </div>
+
+            <div class="coffee-actions" id="coffeeActions">
+                <button type="button" class="coffee-btn" data-coffee="collaborate">Let's collaborate</button>
+                <button type="button" class="coffee-btn" data-coffee="hi">Just say hi 👋</button>
             </div>
 
             <div class="contact-grid">
@@ -844,6 +1419,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (history.replaceState) {
             history.replaceState(null, '', '#' + target);
         }
+        if (target === 'contact') startCoffeeSequence();
     }
 
     document.querySelectorAll('[data-target]').forEach(btn => {
@@ -858,8 +1434,58 @@ document.addEventListener('DOMContentLoaded', () => {
         if (document.getElementById(target)) showView(target);
     });
 
+    /* ---------- "Let's have coffee?" typing sequence ---------- */
+    let coffeeStarted = false;
+    function startCoffeeSequence() {
+        if (coffeeStarted) return;
+        coffeeStarted = true;
+        const typingEl = document.getElementById('coffeeTyping');
+        const messageEl = document.getElementById('coffeeMessage');
+        const actionsEl = document.getElementById('coffeeActions');
+        if (!typingEl || !messageEl || !actionsEl) return;
+
+        setTimeout(() => {
+            typingEl.style.display = 'none';
+            messageEl.style.display = 'block';
+            requestAnimationFrame(() => messageEl.classList.add('show'));
+            setTimeout(() => actionsEl.classList.add('show'), 350);
+        }, 1400);
+    }
+
+    document.querySelectorAll('.coffee-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const mode = btn.dataset.coffee;
+            const targetToggle = document.querySelector(`.toggle-option[data-mode="${mode}"]`);
+            if (targetToggle) targetToggle.click();
+            const grid = document.querySelector('.contact-grid');
+            const nameField = document.getElementById('cf-name');
+            if (grid) {
+                grid.classList.add('show');
+                grid.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+            if (nameField) {
+                setTimeout(() => nameField.focus({ preventScroll: true }), 500);
+            }
+        });
+    });
+
     const initial = window.location.hash.replace('#', '');
     showView(document.getElementById(initial) ? initial : 'home');
+
+    /* ---------- Animated multilingual greeting ---------- */
+    const greetingEl = document.getElementById('greetingText');
+    if (greetingEl) {
+        const greetings = ['Namaste 🙏', 'Hello', 'Bonjour', 'Hola', 'こんにちは', '你好'];
+        let greetIndex = 0;
+        setInterval(() => {
+            greetingEl.classList.add('swap');
+            setTimeout(() => {
+                greetIndex = (greetIndex + 1) % greetings.length;
+                greetingEl.textContent = greetings[greetIndex];
+                greetingEl.classList.remove('swap');
+            }, 450);
+        }, 2000);
+    }
 
     /* ---------- Contact form: Say Hi / Get a Quote toggle ---------- */
     const contactToggle = document.getElementById('contactToggle');
