@@ -62,12 +62,14 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--red); outline-o
     gap: 2.1rem;
     padding: 0.6rem 0.65rem 0.6rem 1.5rem;
     border-radius: 999px;
-    background: linear-gradient(180deg, rgba(255,255,255,0.82), rgba(255,255,255,0.52));
-    backdrop-filter: blur(22px) saturate(180%);
-    -webkit-backdrop-filter: blur(22px) saturate(180%);
+    background: linear-gradient(180deg, rgba(255,255,255,0.9), rgba(255,255,255,0.72));
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
     border: 1px solid rgba(255,255,255,0.65);
     box-shadow: 0 10px 30px rgba(15,15,27,0.12), inset 0 1px 0 rgba(255,255,255,0.6);
     transition: box-shadow 0.35s ease, transform 0.35s ease;
+    transform: translateZ(0);
+    will-change: transform;
 }
 
 .nav-pill:hover {
@@ -86,6 +88,29 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--red); outline-o
 }
 
 .brand-short { display: none; }
+
+.brand-full .letter {
+    display: inline-block;
+    white-space: pre;
+}
+
+.brand-full.wave-hover .letter {
+    animation: letterWave 0.4s ease-in-out;
+}
+
+.brand-full .letter:nth-child(1) { animation-delay: 0s; }
+.brand-full .letter:nth-child(2) { animation-delay: 0.07s; }
+.brand-full .letter:nth-child(3) { animation-delay: 0.14s; }
+.brand-full .letter:nth-child(4) { animation-delay: 0.21s; }
+.brand-full .letter:nth-child(5) { animation-delay: 0.28s; }
+.brand-full .letter:nth-child(6) { animation-delay: 0.35s; }
+.brand-full .letter:nth-child(7) { animation-delay: 0.42s; }
+.brand-full .letter:nth-child(8) { animation-delay: 0.49s; }
+.brand-full .letter:nth-child(9) { animation-delay: 0.56s; }
+.brand-full .letter:nth-child(10) { animation-delay: 0.63s; }
+.brand-full .letter:nth-child(11) { animation-delay: 0.7s; }
+.brand-full .letter:nth-child(12) { animation-delay: 0.77s; }
+.brand-full .letter:nth-child(13) { animation-delay: 0.84s; }
 
 .nav-links {
     display: flex;
@@ -123,9 +148,7 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--red); outline-o
     font-family: 'Poppins', sans-serif;
     font-size: 0.88rem;
     font-weight: 600;
-    background: rgba(15, 15, 27, 0.92);
-    backdrop-filter: blur(14px);
-    -webkit-backdrop-filter: blur(14px);
+    background: rgba(15, 15, 27, 0.96);
     color: var(--white);
     border: 1px solid rgba(255,255,255,0.12);
     border-radius: 999px;
@@ -133,6 +156,7 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--red); outline-o
     cursor: pointer;
     box-shadow: 0 10px 26px rgba(15,15,27,0.25);
     transition: background-color 0.3s ease, transform 0.25s ease, box-shadow 0.3s ease;
+    transform: translateZ(0);
 }
 
 .nav-cta:hover {
@@ -152,14 +176,15 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--red); outline-o
     align-items: center;
     gap: 5px;
     cursor: pointer;
-    background: rgba(255,255,255,0.75);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
+    background: rgba(255,255,255,0.88);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
     border: 1px solid rgba(255,255,255,0.6);
     border-radius: 999px;
     width: 46px;
     height: 46px;
     box-shadow: 0 8px 22px rgba(15,15,27,0.14);
+    transform: translateZ(0);
 }
 
 .hamburger div { width: 20px; height: 2.5px; background-color: var(--ink); border-radius: 2px; transition: transform 0.3s ease, opacity 0.3s ease; }
@@ -173,9 +198,9 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--red); outline-o
     right: 2rem;
     width: 220px;
     padding: 0.75rem;
-    background: linear-gradient(180deg, rgba(255,255,255,0.9), rgba(255,255,255,0.7));
-    backdrop-filter: blur(22px) saturate(180%);
-    -webkit-backdrop-filter: blur(22px) saturate(180%);
+    background: linear-gradient(180deg, rgba(255,255,255,0.95), rgba(255,255,255,0.85));
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
     border: 1px solid rgba(255,255,255,0.65);
     border-radius: 20px;
     box-shadow: 0 16px 40px rgba(15, 15, 27, 0.16);
@@ -349,6 +374,25 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--red); outline-o
 /* ---------- Content sections ---------- */
 .content-section { max-width: 1200px; margin: 0 auto; padding: 5rem 4vw 6rem; }
 
+/* ---------- Scroll fade-up animation ---------- */
+.fade-in {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.project-list .project-card-wrap:nth-of-type(2) { transition-delay: 0.08s; }
+.project-list .project-card-wrap:nth-of-type(3) { transition-delay: 0.16s; }
+.project-list .project-card-wrap:nth-of-type(4) { transition-delay: 0.24s; }
+
+.about-gallery-row .fade-in:nth-of-type(2) { transition-delay: 0.1s; }
+.about-gallery-row .fade-in:nth-of-type(3) { transition-delay: 0.2s; }
+
 .section-header { max-width: 640px; margin-bottom: 3rem; }
 .section-header .eyebrow-pill {
     display: inline-block;
@@ -383,6 +427,10 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--red); outline-o
     gap: 3.25rem;
 }
 
+.project-card-wrap {
+    position: relative;
+}
+
 .project-card {
     position: relative;
     border-radius: 24px;
@@ -393,21 +441,6 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--red); outline-o
     grid-template-columns: 1.05fr 1fr;
     min-height: 400px;
 }
-
-.project-card::after {
-    content: '';
-    position: absolute;
-    left: 18px;
-    right: 18px;
-    bottom: -10px;
-    height: 16px;
-    border-radius: 0 0 18px 18px;
-    z-index: -1;
-}
-
-.project-card.accent-red::after { background: var(--red); }
-.project-card.accent-navy::after { background: var(--navy); }
-.project-card.accent-pink::after { background: var(--pink); }
 
 .project-card.reverse { grid-template-columns: 1fr 1.05fr; }
 .project-card.reverse .project-text { order: 2; }
@@ -437,6 +470,44 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--red); outline-o
 
 .project-tag.solid { background: var(--ink); color: var(--white); }
 .project-tag.outline { background: transparent; color: var(--ink); border: 1.4px solid var(--gray-line); }
+
+.coming-soon-badge {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: var(--muted);
+    display: inline-flex;
+    align-self: flex-start;
+    cursor: default;
+}
+
+.coming-soon-badge .letter {
+    display: inline-block;
+    white-space: pre;
+}
+
+.coming-soon-badge.wave-hover .letter {
+    animation: letterWave 0.4s ease-in-out;
+}
+
+.coming-soon-badge .letter:nth-child(1) { animation-delay: 0s; }
+.coming-soon-badge .letter:nth-child(2) { animation-delay: 0.07s; }
+.coming-soon-badge .letter:nth-child(3) { animation-delay: 0.14s; }
+.coming-soon-badge .letter:nth-child(4) { animation-delay: 0.21s; }
+.coming-soon-badge .letter:nth-child(5) { animation-delay: 0.28s; }
+.coming-soon-badge .letter:nth-child(6) { animation-delay: 0.35s; }
+.coming-soon-badge .letter:nth-child(7) { animation-delay: 0.42s; }
+.coming-soon-badge .letter:nth-child(8) { animation-delay: 0.49s; }
+.coming-soon-badge .letter:nth-child(9) { animation-delay: 0.56s; }
+.coming-soon-badge .letter:nth-child(10) { animation-delay: 0.63s; }
+.coming-soon-badge .letter:nth-child(11) { animation-delay: 0.7s; }
+
+@keyframes letterWave {
+    0% { transform: translateY(0); }
+    35% { transform: translateY(-6px); }
+    70% { transform: translateY(2px); }
+    100% { transform: translateY(0); }
+}
 
 .project-text h3 {
     font-size: clamp(1.4rem, 2.4vw, 1.8rem);
@@ -703,7 +774,31 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--red); outline-o
     font-weight: 700;
     font-size: clamp(2.2rem, 5vw, 3.4rem);
     color: var(--white);
+    cursor: default;
 }
+
+.about-signature .letter {
+    display: inline-block;
+    white-space: pre;
+}
+
+.about-signature.wave-hover .letter {
+    animation: letterWave 0.4s ease-in-out;
+}
+
+.about-signature .letter:nth-child(1) { animation-delay: 0s; }
+.about-signature .letter:nth-child(2) { animation-delay: 0.07s; }
+.about-signature .letter:nth-child(3) { animation-delay: 0.14s; }
+.about-signature .letter:nth-child(4) { animation-delay: 0.21s; }
+.about-signature .letter:nth-child(5) { animation-delay: 0.28s; }
+.about-signature .letter:nth-child(6) { animation-delay: 0.35s; }
+.about-signature .letter:nth-child(7) { animation-delay: 0.42s; }
+.about-signature .letter:nth-child(8) { animation-delay: 0.49s; }
+.about-signature .letter:nth-child(9) { animation-delay: 0.56s; }
+.about-signature .letter:nth-child(10) { animation-delay: 0.63s; }
+.about-signature .letter:nth-child(11) { animation-delay: 0.7s; }
+.about-signature .letter:nth-child(12) { animation-delay: 0.77s; }
+.about-signature .letter:nth-child(13) { animation-delay: 0.84s; }
 
 @media (max-width: 700px) {
     .about-panel { padding: 3rem 1.25rem 3rem; }
@@ -933,24 +1028,164 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--red); outline-o
 .form-field textarea { min-height: 150px; resize: vertical; }
 
 .btn-send {
-    font-family: 'Poppins', sans-serif;
-    font-weight: 700;
-    font-size: 1rem;
-    background: var(--ink);
-    color: var(--white);
+    position: relative;
+    width: 190px;
+    height: 56px;
+    border-radius: 28px;
     border: none;
-    border-radius: 12px;
-    padding: 1.1rem 1.5rem;
+    background: var(--ink);
     cursor: pointer;
-    transition: background-color 0.2s ease, transform 0.15s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.08), 0 8px 20px rgba(20,20,28,0.28);
+    transition:
+        width 0.55s cubic-bezier(0.65, 0, 0.35, 1),
+        border-radius 0.55s cubic-bezier(0.65, 0, 0.35, 1),
+        background-color 0.4s ease,
+        box-shadow 0.4s ease,
+        transform 0.15s ease;
+    -webkit-tap-highlight-color: transparent;
 }
 
-.btn-send:hover { background-color: var(--red); transform: translateY(-2px); }
+.btn-send:hover { background-color: var(--red); }
+.btn-send:active { transform: scale(0.97); }
+
+.btn-send:focus-visible {
+    outline: 2px solid var(--red);
+    outline-offset: 4px;
+}
+
+.btn-send.sending {
+    width: 56px;
+    border-radius: 50%;
+    cursor: default;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.08), 0 6px 14px rgba(20,20,28,0.22);
+}
+
+.btn-send.done {
+    background: #30b350;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.08), 0 8px 20px rgba(48,179,80,0.3);
+}
+
+.btn-text {
+    color: #fff;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    white-space: nowrap;
+    position: absolute;
+    transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+.btn-send.sending .btn-text,
+.btn-send.done .btn-text {
+    opacity: 0;
+    transform: scale(0.85);
+    pointer-events: none;
+}
+
+.plane-wrap {
+    position: absolute;
+    width: 22px;
+    height: 22px;
+    opacity: 0;
+    transform: translate(0, 0) scale(0.8);
+}
+
+.btn-send.sending .plane-wrap {
+    opacity: 1;
+    animation: planeFly 0.85s cubic-bezier(0.5, 0, 0.5, 1) forwards;
+}
+
+.btn-send.done .plane-wrap { opacity: 0; }
+
+@keyframes planeFly {
+    0% {
+        opacity: 0;
+        transform: translate(-6px, 4px) scale(0.7) rotate(-8deg);
+    }
+    18% {
+        opacity: 1;
+        transform: translate(0, 0) scale(1) rotate(-8deg);
+    }
+    75% {
+        opacity: 1;
+        transform: translate(46px, -34px) scale(0.94) rotate(-8deg);
+    }
+    100% {
+        opacity: 0;
+        transform: translate(64px, -48px) scale(0.7) rotate(-8deg);
+    }
+}
+
+.check-wrap {
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    opacity: 0;
+    transform: scale(0.5);
+    transition: opacity 0.25s ease, transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.btn-send.done .check-wrap {
+    opacity: 1;
+    transform: scale(1);
+    transition-delay: 0.08s;
+}
+
+.check-path {
+    stroke-dasharray: 24;
+    stroke-dashoffset: 24;
+}
+
+.btn-send.done .check-path {
+    animation: drawCheck 0.4s ease forwards 0.18s;
+}
+
+@keyframes drawCheck {
+    to { stroke-dashoffset: 0; }
+}
+
+.ring {
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    border: 1px solid rgba(48,179,80,0.5);
+    opacity: 0;
+    pointer-events: none;
+}
+
+.ring-2 {
+    border-color: rgba(48,179,80,0.3);
+}
+
+.btn-send.done .ring {
+    animation: ringPulse 1s cubic-bezier(0.16, 1, 0.3, 1) forwards 0.05s;
+}
+
+.btn-send.done .ring-2 {
+    animation: ringPulse 1s cubic-bezier(0.16, 1, 0.3, 1) forwards 0.22s;
+}
+
+@keyframes ringPulse {
+    0% { opacity: 0.55; transform: scale(1); }
+    100% { opacity: 0; transform: scale(2.1); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .btn-send, .btn-text, .plane-wrap, .check-wrap, .ring, .ring-2 {
+        animation: none !important;
+        transition: opacity 0.2s ease !important;
+    }
+}
 
 .form-status {
     font-size: 0.85rem;
     color: var(--muted);
     min-height: 1.2em;
+    transition: opacity 0.3s ease;
 }
 
 @media (max-width: 900px) {
@@ -994,7 +1229,7 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--red); outline-o
 <nav class="navbar">
     <div class="nav-pill">
         <div class="brand">
-            <span class="brand-full">Unish Baskota</span>
+            <span class="brand-full"><span class="letter">U</span><span class="letter">n</span><span class="letter">i</span><span class="letter">s</span><span class="letter">h</span><span class="letter">&nbsp;</span><span class="letter">B</span><span class="letter">a</span><span class="letter">s</span><span class="letter">k</span><span class="letter">o</span><span class="letter">t</span><span class="letter">a</span></span>
             <span class="brand-short">UB</span>
         </div>
         <ul class="nav-links">
@@ -1026,7 +1261,7 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--red); outline-o
     <section class="view" id="home">
         <div class="hero">
             <div class="hero-grid">
-                <div>
+                <div class="fade-in">
                     <span class="greeting-wrap">
                         <span class="greeting-pill"><span class="wave">👋</span> <span id="greetingText">Namaste 🙏</span></span>
                     </span>
@@ -1036,7 +1271,7 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--red); outline-o
                         <button type="button" class="btn-primary" data-target="projects">View my projects</button>
                     </div>
                 </div>
-                <div class="hero-art">
+                <div class="hero-art fade-in" style="transition-delay: 0.12s;">
                     <svg viewBox="0 0 520 460" xmlns="http://www.w3.org/2000/svg">
                         <ellipse cx="260" cy="230" rx="220" ry="90" fill="none" stroke="#14141C" stroke-width="1.4" transform="rotate(-14 260 230)"/>
                         <ellipse cx="260" cy="230" rx="180" ry="70" fill="none" stroke="#14141C" stroke-width="1.2" transform="rotate(10 260 230)"/>
@@ -1082,7 +1317,7 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--red); outline-o
     <!-- Projects -->
     <section class="view" id="projects">
         <div class="content-section">
-            <div class="section-header">
+            <div class="section-header fade-in">
                 <span class="eyebrow-pill">Projects</span>
                 <h2>Things I've built</h2>
                 <p>A few tools I've made while learning to solve real, everyday problems with code.</p>
@@ -1091,7 +1326,8 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--red); outline-o
             <div class="project-list">
 
                 <!-- Chemsketch -->
-                <article class="project-card accent-red">
+                <div class="project-card-wrap accent-red fade-in">
+                <article class="project-card">
                     <div class="project-text">
                         <div class="project-tags">
                             <span class="project-tag solid">Chemsketch</span>
@@ -1131,9 +1367,11 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--red); outline-o
                         </svg>
                     </div>
                 </article>
+                </div>
 
                 <!-- SQL Password Changer -->
-                <article class="project-card accent-navy reverse">
+                <div class="project-card-wrap accent-navy fade-in">
+                <article class="project-card reverse">
                     <div class="project-text">
                         <div class="project-tags">
                             <span class="project-tag solid">SQL Password Changer</span>
@@ -1145,7 +1383,7 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--red); outline-o
                             <li>Password reset</li>
                             <li>Database utility</li>
                         </ul>
-                        <a href="#" class="project-link">View project &rarr;</a>
+                        <span class="coming-soon-badge"><span class="letter">C</span><span class="letter">o</span><span class="letter">m</span><span class="letter">i</span><span class="letter">n</span><span class="letter">g</span><span class="letter">&nbsp;</span><span class="letter">S</span><span class="letter">o</span><span class="letter">o</span><span class="letter">n</span></span>
                     </div>
                     <div class="project-visual bg-navy">
                         <svg class="spark" width="20" height="20" viewBox="0 0 20 20" style="top:18%; right:16%;"><circle cx="10" cy="10" r="10" fill="#F6ABA0"/></svg>
@@ -1157,9 +1395,11 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--red); outline-o
                         </svg>
                     </div>
                 </article>
+                </div>
 
                 <!-- IDM Reset -->
-                <article class="project-card accent-pink">
+                <div class="project-card-wrap accent-pink fade-in">
+                <article class="project-card">
                     <div class="project-text">
                         <div class="project-tags">
                             <span class="project-tag solid">IDM Reset</span>
@@ -1171,7 +1411,7 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--red); outline-o
                             <li>Trial reset</li>
                             <li>No reinstall needed</li>
                         </ul>
-                        <a href="#" class="project-link">View project &rarr;</a>
+                        <span class="coming-soon-badge"><span class="letter">C</span><span class="letter">o</span><span class="letter">m</span><span class="letter">i</span><span class="letter">n</span><span class="letter">g</span><span class="letter">&nbsp;</span><span class="letter">S</span><span class="letter">o</span><span class="letter">o</span><span class="letter">n</span></span>
                     </div>
                     <div class="project-visual bg-pink">
                         <svg class="spark" width="16" height="16" viewBox="0 0 16 16" style="top:16%; left:20%;"><circle cx="8" cy="8" r="8" fill="#0F0F1B"/></svg>
@@ -1183,9 +1423,11 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--red); outline-o
                         </svg>
                     </div>
                 </article>
+                </div>
 
                 <!-- .np Cover Letter Generator -->
-                <article class="project-card accent-red reverse">
+                <div class="project-card-wrap accent-red fade-in">
+                <article class="project-card reverse">
                     <div class="project-text">
                         <div class="project-tags">
                             <span class="project-tag solid">.np Cover Letter Generator</span>
@@ -1209,6 +1451,7 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--red); outline-o
                         </svg>
                     </div>
                 </article>
+                </div>
 
             </div>
         </div>
@@ -1219,7 +1462,7 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--red); outline-o
         <div class="content-section">
             <div class="about-panel">
 
-                <div class="about-tags">
+                <div class="about-tags fade-in">
                     <span class="tape-tag tag-a">
                         <span class="tape-dot"></span>Builder
                     </span>
@@ -1231,19 +1474,19 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--red); outline-o
                     </span>
                 </div>
 
-                <div class="about-heading">
+                <div class="about-heading fade-in" style="transition-delay: 0.08s;">
                     <h2>Beyond the <span class="accent">code</span></h2>
                     <p>A quick look at what drives me beyond just writing code.</p>
                 </div>
 
-                <div class="about-bio">
+                <div class="about-bio fade-in" style="transition-delay: 0.16s;">
                     <p>I&rsquo;m Unish Baskota, a Class 12 student from Nepal with a <strong>constant curiosity</strong> for how things work. From exploring basic programming to building advanced tools, my journey has been about <strong>growth</strong> &mdash; each project teaching me something new and shaping who I am today. I care about building things that are <strong>actually useful</strong> and make everyday life a little easier.</p>
                     <svg class="about-scribble" viewBox="0 0 80 60" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M6 8c14 0 14 14 28 14s14-14 28-14c8 0 12 6 12 14 0 12-10 22-22 22H16C8 44 2 36 2 26" stroke="#EF3E3E" stroke-width="3.5" stroke-linecap="round" fill="none"/>
                     </svg>
                 </div>
 
-                <div class="about-gallery-row">
+                <div class="about-gallery-row fade-in" style="transition-delay: 0.24s;">
                     <div class="photo-slot tilt-a">
                         <span class="photo-bubble">Always tinkering</span>
                         <!-- Swap this SVG for <img src="your-photo.jpg" alt="..."> when ready -->
@@ -1284,7 +1527,7 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--red); outline-o
                     </div>
                 </div>
 
-                <p class="about-signature">Unish Baskota</p>
+                <p class="about-signature fade-in" style="transition-delay: 0.3s;"><span class="letter">U</span><span class="letter">n</span><span class="letter">i</span><span class="letter">s</span><span class="letter">h</span><span class="letter">&nbsp;</span><span class="letter">B</span><span class="letter">a</span><span class="letter">s</span><span class="letter">k</span><span class="letter">o</span><span class="letter">t</span><span class="letter">a</span></p>
             </div>
         </div>
     </section>
@@ -1322,12 +1565,12 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--red); outline-o
             </svg>
         </div>
         <div class="content-section">
-            <div class="section-header">
+            <div class="section-header fade-in">
                 <span class="eyebrow-pill">Contact</span>
                 <h2>Get in touch</h2>
             </div>
 
-            <h3 class="coffee-heading">Let's have coffee?</h3>
+            <h3 class="coffee-heading fade-in" style="transition-delay: 0.08s;">Let's have coffee?</h3>
 
             <div class="coffee-card" id="coffeeCard">
                 <div class="coffee-avatar">UB</div>
@@ -1370,7 +1613,22 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--red); outline-o
                         <textarea id="cf-message" name="message" placeholder="Message" required></textarea>
                     </div>
 
-                    <button type="submit" class="btn-send">Send Message</button>
+                    <button type="submit" class="btn-send" id="sendBtn">
+                        <span class="ring" aria-hidden="true"></span>
+                        <span class="ring ring-2" aria-hidden="true"></span>
+                        <span class="btn-text">Send Message</span>
+                        <span class="plane-wrap" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="none">
+                                <path d="M21 3L3 10.5L10.8 13.2L13.5 21L21 3Z" fill="#fff"/>
+                                <path d="M10.8 13.2L21 3" stroke="#14141C" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </span>
+                        <span class="check-wrap" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="none">
+                                <path class="check-path" d="M5 12.5L10 17.5L19 7" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </span>
+                    </button>
                     <p class="form-status" id="formStatus"></p>
                 </form>
             </div>
@@ -1410,6 +1668,29 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const views = document.querySelectorAll('.view');
 
+    /* ---------- Scroll fade-up animation ---------- */
+    const fadeEls = document.querySelectorAll('.fade-in');
+    const fadeObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                fadeObserver.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.12 });
+    fadeEls.forEach(el => fadeObserver.observe(el));
+
+    function revealVisibleFadeIns() {
+        fadeEls.forEach(el => {
+            if (el.classList.contains('visible')) return;
+            const rect = el.getBoundingClientRect();
+            if (rect.top < window.innerHeight * 0.92 && rect.bottom > 0) {
+                el.classList.add('visible');
+                fadeObserver.unobserve(el);
+            }
+        });
+    }
+
     function showView(target) {
         views.forEach(v => v.classList.toggle('active', v.id === target));
         document.querySelectorAll('.nav-links button, .menu button').forEach(b => {
@@ -1420,6 +1701,7 @@ document.addEventListener('DOMContentLoaded', () => {
             history.replaceState(null, '', '#' + target);
         }
         if (target === 'contact') startCoffeeSequence();
+        requestAnimationFrame(revealVisibleFadeIns);
     }
 
     document.querySelectorAll('[data-target]').forEach(btn => {
@@ -1469,6 +1751,32 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
+    /* ---------- Letter-wave hover loop (restarts only after a full pass) ---------- */
+    function setupLetterWave(el) {
+        const letterCount = el.querySelectorAll('.letter').length;
+        if (!letterCount) return;
+        const cycleMs = (letterCount - 1) * 70 + 400 + 200; // last delay + duration + pause
+        let intervalId = null;
+
+        function playOnce() {
+            el.classList.remove('wave-hover');
+            void el.offsetWidth; // force reflow so the animation restarts cleanly
+            el.classList.add('wave-hover');
+        }
+
+        el.addEventListener('mouseenter', () => {
+            playOnce();
+            intervalId = setInterval(playOnce, cycleMs);
+        });
+
+        el.addEventListener('mouseleave', () => {
+            clearInterval(intervalId);
+            el.classList.remove('wave-hover');
+        });
+    }
+
+    document.querySelectorAll('.brand-full, .about-signature, .coming-soon-badge').forEach(setupLetterWave);
+
     const initial = window.location.hash.replace('#', '');
     showView(document.getElementById(initial) ? initial : 'home');
 
@@ -1503,8 +1811,11 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
 
-        contactForm.addEventListener('submit', (e) => {
+        contactForm.addEventListener('submit', async (e) => {
             e.preventDefault();
+            const sendBtn = document.getElementById('sendBtn');
+            if (sendBtn && sendBtn.classList.contains('sending')) return;
+
             const mode = contactMode === 'collaborate' ? 'Collaboration request' : 'Message';
             const name = document.getElementById('cf-name').value.trim();
             const email = document.getElementById('cf-email').value.trim();
@@ -1515,19 +1826,85 @@ document.addEventListener('DOMContentLoaded', () => {
                 return;
             }
 
-            
-            const to = 'me@unishbaskota.com.np';
-            const subject = encodeURIComponent(`${mode} from ${name || 'your site'}`);
-            const bodyLines = [
-                name ? `Name: ${name}` : null,
-                `Email: ${email}`,
-                '',
-                message
-            ].filter(Boolean);
-            const body = encodeURIComponent(bodyLines.join('\n'));
+            if (sendBtn) {
+                sendBtn.disabled = true;
+                sendBtn.classList.remove('done');
+                void sendBtn.offsetWidth; // restart animation if clicked again later
+                sendBtn.classList.add('sending');
+            }
+            formStatus.style.opacity = '0';
+            setTimeout(() => {
+                formStatus.textContent = 'Sending…';
+                formStatus.style.opacity = '1';
+            }, 120);
 
-            window.location.href = `mailto:${to}?subject=${subject}&body=${body}`;
-            formStatus.textContent = 'Opening your email app…';
+            const sentAt = Date.now();
+            const MIN_SENDING_MS = 950; // lets the plane-flight animation finish before we react
+
+            try {
+                const response = await fetch('https://api.web3forms.com/submit', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        access_key: 'bf2a28a5-e9a5-4d0d-9652-2e4ff2d4b8d1',
+                        subject: `${mode} from ${name || 'your site'}`,
+                        name: name || 'Website visitor',
+                        email: email,
+                        message: message
+                    })
+                });
+
+                const result = await response.json();
+                const elapsed = Date.now() - sentAt;
+                if (elapsed < MIN_SENDING_MS) {
+                    await new Promise(r => setTimeout(r, MIN_SENDING_MS - elapsed));
+                }
+
+                if (response.ok && result.success) {
+                    if (sendBtn) {
+                        sendBtn.classList.remove('sending');
+                        sendBtn.classList.add('done');
+                    }
+                    formStatus.style.opacity = '0';
+                    setTimeout(() => {
+                        formStatus.textContent = 'Message sent — thanks for reaching out!';
+                        formStatus.style.opacity = '1';
+                    }, 120);
+                    contactForm.reset();
+
+                    setTimeout(() => {
+                        if (sendBtn) sendBtn.classList.remove('done');
+                        formStatus.style.opacity = '0';
+                    }, 2600);
+                    setTimeout(() => {
+                        formStatus.textContent = '';
+                        formStatus.style.opacity = '1';
+                        if (sendBtn) sendBtn.disabled = false;
+                    }, 2900);
+                } else {
+                    if (sendBtn) sendBtn.classList.remove('sending');
+                    formStatus.style.opacity = '0';
+                    setTimeout(() => {
+                        formStatus.textContent = 'Something went wrong. Please try again.';
+                        formStatus.style.opacity = '1';
+                    }, 120);
+                    if (sendBtn) sendBtn.disabled = false;
+                }
+            } catch (error) {
+                const elapsed = Date.now() - sentAt;
+                if (elapsed < MIN_SENDING_MS) {
+                    await new Promise(r => setTimeout(r, MIN_SENDING_MS - elapsed));
+                }
+                if (sendBtn) {
+                    sendBtn.classList.remove('sending');
+                    sendBtn.disabled = false;
+                }
+                formStatus.style.opacity = '0';
+                setTimeout(() => {
+                    formStatus.textContent = 'Something went wrong. Please try again.';
+                    formStatus.style.opacity = '1';
+                }, 120);
+            }
         });
     }
 });
