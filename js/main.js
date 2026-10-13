@@ -336,17 +336,7 @@
     const sign = $('.about-sign');
     if (sign) {
         const ribbon = $('.sign-ribbon', sign);
-        let done = false;
-        ribbon.addEventListener('animationend', () => { done = true; });
-        const replay = () => {
-            if (!done) return;
-            done = false;
-            sign.classList.add('reset');
-            void sign.offsetWidth;
-            sign.classList.remove('reset');
-        };
-        sign.addEventListener('pointerenter', e => { if (e.pointerType === 'mouse') replay(); });
-        sign.addEventListener('click', replay);
+        ribbon.addEventListener('animationend', () => sign.classList.add('played'));
     }
 
     $$('.project-card').forEach(card => {
