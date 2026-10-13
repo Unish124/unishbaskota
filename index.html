@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="description" content="Unish Baskota — student, builder, and lifelong learner from Nepal.">
+<title>Unish Baskota — Portfolio</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" media="print" onload="this.media='all'"
+  href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=Inter:wght@400;500;600&family=Caveat:wght@600;700&display=swap">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=Inter:wght@400;500;600&family=Caveat:wght@600;700&display=swap"></noscript>
+
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<nav class="navbar">
+    <div class="nav-pill">
+        <div class="brand">
+            <span class="brand-full split" aria-label="Unish Baskota">Unish Baskota</span>
+            <span class="brand-short">UB</span>
+        </div>
+        <ul class="nav-links">
+            <li><button type="button" data-target="home">Home</button></li>
+            <li><button type="button" data-target="projects">Projects</button></li>
+            <li><button type="button" data-target="about">About Me</button></li>
+            <li><button type="button" data-target="contact">Contact</button></li>
+        </ul>
+    </div>
+    <div class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false" role="button" tabindex="0">
+        <div></div><div></div><div></div>
+    </div>
+    <button type="button" class="nav-cta" data-target="contact">Get in touch</button>
+</nav>
+
+<div class="menu" id="menu">
+    <button type="button" data-target="home">Home</button>
+    <button type="button" data-target="projects">Projects</button>
+    <button type="button" data-target="about">About Me</button>
+    <button type="button" data-target="contact">Contact</button>
+</div>
+<div class="blur-overlay" id="blurOverlay"></div>
+
+<main>
+
+<section class="view active" id="home">
+    <div class="hero">
+        <div class="hero-grid">
+            <div class="fade-in">
+                <span class="greeting-pill"><span class="wave">👋</span> <span id="greetingText">Namaste 🙏</span></span>
+                <h2>Turning <span class="accent">curiosity</span><br>into working <span class="accent">code</span><br>and real projects</h2>
+                <p class="hero-content">I&rsquo;m Unish Baskota from Nepal, currently pursuing Class 12. I enjoy learning how things work and building things that are actually useful. I love exploring technology and building tools that have a real impact on people&rsquo;s everyday lives and make life easier.</p>
+                <div class="hero-actions">
+                    <button type="button" class="btn-primary" data-target="projects">View my projects</button>
+                </div>
+            </div>
+            <div class="hero-art fade-in" style="transition-delay:.12s">
+                <svg viewBox="0 0 520 460" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <ellipse cx="260" cy="230" rx="220" ry="90" fill="none" stroke="#14141C" stroke-width="1.4" transform="rotate(-14 260 230)"/>
+                    <ellipse cx="260" cy="230" rx="180" ry="70" fill="none" stroke="#14141C" stroke-width="1.2" transform="rotate(10 260 230)"/>
+                    <circle class="float-1" cx="90" cy="120" r="12" fill="#14141C"/>
+                    <circle class="float-2" cx="130" cy="150" r="7" fill="#F6ABA0"/>
+                    <path class="float-3" d="M75 340 l10 22 22 10 -22 10 -10 22 -10 -22 -22 -10 22 -10 z" fill="#14141C"/>
+                    <path class="float-4" d="M420 360 l6 13 13 6 -13 6 -6 13 -6 -13 -13 -6 13 -6 z" fill="#14141C"/>
+                    <circle class="float-5" cx="380" cy="370" r="6" fill="#F6ABA0"/>
+                    <g transform="translate(150,140)">
+                        <rect width="220" height="145" rx="12" fill="#FFF" stroke="#14141C" stroke-width="3"/>
+                        <rect x="16" y="16" width="188" height="113" rx="4" fill="#14141C"/>
+                        <text x="110" y="82" font-family="Poppins, sans-serif" font-size="34" font-weight="700" fill="#F6ABA0" text-anchor="middle">&lt;/&gt;</text>
+                        <path d="M-18 145 L238 145 L258 178 L-38 178 Z" fill="#14141C"/>
+                        <rect x="95" y="153" width="30" height="6" rx="3" fill="#F2F2F5"/>
+                    </g>
+                    <g class="float-6"><g transform="translate(378,90)">
+                        <circle r="30" fill="#14141C"/>
+                        <path d="M-10 4 a10 10 0 1 1 20 0 c0 7 -10 12 -10 16 c0 -4 -10 -9 -10 -16 z" fill="#FFF" transform="scale(0.7) translate(-2,-6)"/>
+                    </g></g>
+                    <g class="float-7"><g transform="translate(440,150)">
+                        <circle r="26" fill="#F6ABA0"/>
+                        <circle cx="-6" cy="-6" r="3.4" fill="#14141C"/><circle cx="8" cy="-2" r="3.4" fill="#14141C"/><circle cx="-2" cy="9" r="3.4" fill="#14141C"/>
+                        <path d="M-6 -6 L8 -2 M8 -2 L-2 9 M-6 -6 L-2 9" stroke="#14141C" stroke-width="1.6"/>
+                    </g></g>
+                </svg>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="view" id="projects">
+    <div class="content-section">
+        <div class="section-header fade-in">
+            <span class="eyebrow-pill">Projects</span>
+            <h2>Things I've built</h2>
+            <p>A few tools I've made while learning to solve real, everyday problems with code.</p>
+        </div>
+
+        <div class="project-list">
+
+            <div class="project-card-wrap fade-in">
+            <article class="project-card">
+                <div class="project-text">
+                    <div class="project-tags"><span class="project-tag solid">Chemsketch</span><span class="project-tag outline">Chemistry</span></div>
+                    <h3>A browser tool for drawing chemistry formulas</h3>
+                    <p>Chemical structures, molecules, and reaction diagrams &mdash; without wrestling with clunky desktop software.</p>
+                    <ul class="project-features"><li>Molecular structures</li><li>Reaction diagrams</li></ul>
+                    <a href="https://chemsketch.unish.info.np" target="_blank" rel="noopener" class="project-link">View project <span class="arrow" aria-hidden="true">&rarr;</span></a>
+                </div>
+                <div class="project-visual bg-red">
+                    <svg class="spark" width="26" height="26" viewBox="0 0 26 26" style="top:14%;left:18%"><path d="M13 0 L16 10 L26 13 L16 16 L13 26 L10 16 L0 13 L10 10 Z" fill="#FFF"/></svg>
+                    <svg class="spark" width="14" height="14" viewBox="0 0 14 14" style="bottom:16%;right:20%"><circle cx="7" cy="7" r="7" fill="#0F0F1B"/></svg>
+                    <svg class="visual-icon" viewBox="0 0 64 64" fill="none" aria-hidden="true">
+                        <path d="M27 7.5h10M29 7.5v11.8M35 7.5v11.8" stroke="#FFF" stroke-width="2.4" stroke-linecap="round"/>
+                        <path d="M29 19.3L17.3 41.8a5 5 0 0 0 4.4 7.3h20.6a5 5 0 0 0 4.4-7.3L35 19.3" stroke="#FFF" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/>
+                        <path d="M20.6 37.5c2.7 1.8 6.4 2.8 11.4 2.8s8.7-1 11.4-2.8l2.7 5.2a3.1 3.1 0 0 1-2.7 4.5H20.6a3.1 3.1 0 0 1-2.7-4.5l2.7-5.2z" fill="rgba(255,255,255,0.24)"/>
+                        <circle cx="29.5" cy="42.5" r="1.6" fill="#0F0F1B"/><circle cx="35" cy="45" r="1.3" fill="#0F0F1B"/><circle cx="32" cy="37.5" r="1" fill="#F6ABA0"/>
+                        <g transform="translate(45,17)">
+                            <polygon points="0,-8.5 7.4,-4.25 7.4,4.25 0,8.5 -7.4,4.25 -7.4,-4.25" stroke="#FFF" stroke-width="1.6" fill="none" stroke-linejoin="round"/>
+                            <line x1="0" y1="-8.5" x2="0" y2="-14" stroke="#FFF" stroke-width="1.6" stroke-linecap="round"/>
+                            <circle cy="-8.5" r="1.5" fill="#FFF"/><circle cx="7.4" cy="-4.25" r="1.5" fill="#FFF"/><circle cx="7.4" cy="4.25" r="1.5" fill="#FFF"/>
+                            <circle cy="8.5" r="1.5" fill="#FFF"/><circle cx="-7.4" cy="4.25" r="1.5" fill="#FFF"/><circle cx="-7.4" cy="-4.25" r="1.5" fill="#FFF"/>
+                            <circle cy="-14" r="1.7" fill="#F6ABA0"/>
+                        </g>
+                    </svg>
+                </div>
+            </article>
+            </div>
+
+            <div class="project-card-wrap fade-in">
+            <article class="project-card reverse">
+                <div class="project-text">
+                    <div class="project-tags"><span class="project-tag solid">Video Player</span><span class="project-tag outline">Media</span></div>
+                    <h3>A web-based video player built for keyboard lovers</h3>
+                    <p>Play videos right in the browser, with lots of keyboard shortcuts and plenty of ways to customize how it looks and works.</p>
+                    <ul class="project-features"><li>Lots of keyboard shortcuts</li><li>Highly customizable</li></ul>
+                    <a href="https://videoplayer.unish.info.np/" target="_blank" rel="noopener" class="project-link">View project <span class="arrow" aria-hidden="true">&rarr;</span></a>
+                </div>
+                <div class="project-visual bg-navy">
+                    <svg class="spark" width="20" height="20" viewBox="0 0 20 20" style="top:18%;right:16%"><circle cx="10" cy="10" r="10" fill="#F6ABA0"/></svg>
+                    <svg class="spark" width="30" height="30" viewBox="0 0 30 30" style="bottom:14%;left:14%"><path d="M15 0 L18.5 11.5 L30 15 L18.5 18.5 L15 30 L11.5 18.5 L0 15 L11.5 11.5 Z" fill="#EF3E3E"/></svg>
+                    <svg class="visual-icon" viewBox="0 0 64 64" fill="none" aria-hidden="true">
+                        <rect x="8" y="14" width="48" height="32" rx="6" stroke="#FFF" stroke-width="2.5"/>
+                        <path d="M28 24.5v13l11-6.5-11-6.5z" fill="#EF3E3E" stroke="#EF3E3E" stroke-width="2" stroke-linejoin="round"/>
+                        <path d="M16 53h32" stroke="#FFF" stroke-width="2.5" stroke-linecap="round"/>
+                        <circle cx="34" cy="53" r="3" fill="#FFF"/>
+                    </svg>
+                </div>
+            </article>
+            </div>
+
+            <div class="project-card-wrap fade-in">
+            <article class="project-card">
+                <div class="project-text">
+                    <div class="project-tags"><span class="project-tag solid">URL Shortener</span><span class="project-tag outline">Utility</span></div>
+                    <h3>Turning long links into short ones</h3>
+                    <p>A simple URL shortener for making long web addresses short and easy to share.</p>
+                    <ul class="project-features"><li>Short, shareable links</li><li>Quick and simple</li></ul>
+                    <a href="https://url.unish.info.np/" target="_blank" rel="noopener" class="project-link">View project <span class="arrow" aria-hidden="true">&rarr;</span></a>
+                </div>
+                <div class="project-visual bg-pink">
+                    <svg class="spark" width="16" height="16" viewBox="0 0 16 16" style="top:16%;left:20%"><circle cx="8" cy="8" r="8" fill="#0F0F1B"/></svg>
+                    <svg class="spark" width="24" height="24" viewBox="0 0 24 24" style="bottom:18%;right:16%"><path d="M12 0 L14.8 9.2 L24 12 L14.8 14.8 L12 24 L9.2 14.8 L0 12 L9.2 9.2 Z" fill="#FFF"/></svg>
+                    <svg class="visual-icon" viewBox="0 0 64 64" fill="none" aria-hidden="true">
+                        <path d="M27 37l10-10" stroke="#14141C" stroke-width="2.5" stroke-linecap="round"/>
+                        <path d="M30 22l4-4a9 9 0 0 1 13 13l-4 4" stroke="#14141C" stroke-width="2.5" stroke-linecap="round"/>
+                        <path d="M34 42l-4 4a9 9 0 0 1-13-13l4-4" stroke="#14141C" stroke-width="2.5" stroke-linecap="round"/>
+                        <circle cx="49" cy="49" r="3" fill="#EF3E3E"/>
+                    </svg>
+                </div>
+            </article>
+            </div>
+
+            <div class="project-card-wrap fade-in">
+            <article class="project-card reverse">
+                <div class="project-text">
+                    <div class="project-tags"><span class="project-tag solid">.np Cover Letter Generator</span><span class="project-tag outline">.np Domain</span></div>
+                    <h3>Generating the cover letter required for .np domains</h3>
+                    <p>A tool that generates the cover letter needed to register a .np domain, so it's not written from scratch every time.</p>
+                    <ul class="project-features"><li>Auto-generated letter</li><li>.np domain registration</li></ul>
+                    <a href="https://coverletter.unish.info.np" target="_blank" rel="noopener" class="project-link">View project <span class="arrow" aria-hidden="true">&rarr;</span></a>
+                </div>
+                <div class="project-visual bg-red">
+                    <svg class="spark" width="18" height="18" viewBox="0 0 18 18" style="top:20%;right:18%"><circle cx="9" cy="9" r="9" fill="#0F0F1B"/></svg>
+                    <svg class="spark" width="26" height="26" viewBox="0 0 26 26" style="bottom:16%;left:16%"><path d="M13 0 L16 10 L26 13 L16 16 L13 26 L10 16 L0 13 L10 10 Z" fill="#FFF"/></svg>
+                    <svg class="visual-icon" viewBox="0 0 64 64" fill="none" aria-hidden="true">
+                        <path d="M16 10h24l10 10v34a2 2 0 0 1-2 2H16a2 2 0 0 1-2-2V12a2 2 0 0 1 2-2z" stroke="#FFF" stroke-width="2.5"/>
+                        <path d="M40 10v10h10" stroke="#FFF" stroke-width="2.5"/>
+                        <path d="M22 34h20M22 41h20M22 27h12" stroke="#FFF" stroke-width="2.5" stroke-linecap="round"/>
+                    </svg>
+                </div>
+            </article>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<section class="view" id="about">
+    <div class="content-section">
+        <div class="about-panel">
+            <div class="about-sign fade-in" style="transition-delay:0s" role="img" aria-label="Unish Baskota">
+                <svg viewBox="0 0 520 120" aria-hidden="true">
+                    <text class="sign-text" x="260" y="70" text-anchor="middle"><tspan class="glyph" style="--i:0">U</tspan><tspan class="glyph" style="--i:1">n</tspan><tspan class="glyph" style="--i:2">i</tspan><tspan class="glyph" style="--i:3">s</tspan><tspan class="glyph" style="--i:4">h</tspan> <tspan class="glyph" style="--i:5">B</tspan><tspan class="glyph" style="--i:6">a</tspan><tspan class="glyph" style="--i:7">s</tspan><tspan class="glyph" style="--i:8">k</tspan><tspan class="glyph" style="--i:9">o</tspan><tspan class="glyph" style="--i:10">t</tspan><tspan class="glyph" style="--i:11">a</tspan></text>
+                    <path class="sign-ribbon" pathLength="1" d="M52 100 C110 84 150 108 215 97 S330 82 385 98 S455 104 470 90"/>
+                </svg>
+            </div>
+
+                <div class="about-heading fade-in" style="transition-delay:.08s">
+                <h2>Beyond the <span class="accent">code</span></h2>
+                <p>A quick look at what drives me beyond just writing code.</p>
+            </div>
+            <div class="about-bio fade-in" style="transition-delay:.16s">
+                <p>I&rsquo;m Unish Baskota, a Class 12 student from Nepal with a <strong>constant curiosity</strong> for how things work. From exploring basic programming to building advanced tools, my journey has been about <strong>growth</strong> &mdash; each project teaching me something new and shaping who I am today. I care about building things that are <strong>actually useful</strong> and make everyday life a little easier.</p>
+            </div>
+            <div class="about-gallery-row fade-in" style="transition-delay:.24s">
+                <div class="photo-slot tilt-a">
+                    <span class="photo-bubble">Always tinkering</span>
+                    <div class="photo-frame"><img src="ph1.jpg" alt="Unish Baskota" loading="lazy"></div>
+                </div>
+                <div class="photo-slot tilt-b">
+                    <span class="photo-bubble">Curious by nature</span>
+                    <div class="photo-frame"><svg viewBox="0 0 64 64" fill="none"><path d="M26 10h12" stroke="#14141C" stroke-width="2.5" stroke-linecap="round"/><path d="M28 10v12l-13 24a4 4 0 0 0 3.5 6h27a4 4 0 0 0 3.5-6l-13-24V10" stroke="#14141C" stroke-width="2.5" stroke-linejoin="round"/><path d="M21 40h22" stroke="#14141C" stroke-width="2.5"/><circle cx="27" cy="47" r="2.4" fill="#EF3E3E"/><circle cx="35" cy="51" r="2.4" fill="#EF3E3E"/><circle cx="40" cy="45" r="2.4" fill="#EF3E3E"/></svg></div>
+                </div>
+                <div class="photo-slot tilt-c">
+                    <span class="photo-bubble">Nepal, always home</span>
+                    <div class="photo-frame"><svg viewBox="0 0 64 64" fill="none"><path d="M6 50L24 20l10 16 8-10 16 24" stroke="#14141C" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/><path d="M4 50h56" stroke="#14141C" stroke-width="2.5" stroke-linecap="round"/><circle cx="46" cy="16" r="6" stroke="#EF3E3E" stroke-width="2.5"/></svg></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="view" id="contact">
+    <div class="contact-bg" aria-hidden="true">
+        <svg viewBox="0 0 520 480" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+            <g stroke="#14141C" stroke-width="1.2" opacity="0.55">
+                <line x1="260" y1="240" x2="500" y2="30"/><line x1="260" y1="240" x2="510" y2="80"/><line x1="260" y1="240" x2="500" y2="130"/>
+                <line x1="260" y1="240" x2="505" y2="180"/><line x1="260" y1="240" x2="495" y2="225"/><line x1="260" y1="240" x2="510" y2="270"/>
+                <line x1="260" y1="240" x2="495" y2="315"/><line x1="260" y1="240" x2="505" y2="360"/><line x1="260" y1="240" x2="490" y2="405"/>
+                <line x1="260" y1="240" x2="470" y2="440"/><line x1="260" y1="240" x2="330" y2="60"/><line x1="260" y1="240" x2="370" y2="45"/>
+                <line x1="260" y1="240" x2="410" y2="55"/><line x1="260" y1="240" x2="440" y2="450"/><line x1="260" y1="240" x2="400" y2="460"/>
+                <line x1="260" y1="240" x2="360" y2="470"/><line x1="260" y1="240" x2="320" y2="440"/><line x1="260" y1="240" x2="290" y2="420"/>
+            </g>
+            <path d="M260 100 L340 240 L260 380 L180 240 Z" fill="#0F0F1B"/>
+            <path d="M175 330 L215 400 L175 470 L135 400 Z" fill="#F6ABA0"/>
+        </svg>
+    </div>
+    <div class="content-section">
+        <div class="section-header fade-in">
+            <span class="eyebrow-pill">Contact</span>
+            <h2>Get in touch</h2>
+        </div>
+        <h3 class="coffee-heading fade-in" style="transition-delay:.08s">Let's have coffee?</h3>
+
+        <div class="coffee-card fade-in" style="transition-delay:.14s">
+            <div class="coffee-avatar">UB<span class="presence" aria-hidden="true"></span></div>
+            <div class="coffee-bubble" id="coffeeBubble">
+                <div class="coffee-typing" id="coffeeTyping" aria-hidden="true"><span></span><span></span><span></span></div>
+                <p class="coffee-message" id="coffeeMessage">Want to build something together, or just want to say hi?</p>
+            </div>
+        </div>
+
+        <div class="coffee-actions" id="coffeeActions">
+            <button type="button" class="coffee-btn" data-coffee="collaborate">Let's collaborate</button>
+            <button type="button" class="coffee-btn" data-coffee="hi">Just say hi 👋</button>
+        </div>
+
+        <div class="contact-grid">
+            <div class="contact-toggle" id="contactToggle" role="group" aria-label="Message type">
+                <button type="button" class="toggle-option active" data-mode="hi"><span class="radio-dot"></span>Say Hi</button>
+                <button type="button" class="toggle-option" data-mode="collaborate"><span class="radio-dot"></span>Collaborate</button>
+            </div>
+
+            <form class="contact-form" id="contactForm" novalidate>
+                <div class="form-field">
+                    <label for="cf-name">Name</label>
+                    <input type="text" id="cf-name" name="name" placeholder="Name" autocomplete="name">
+                </div>
+                <div class="form-field">
+                    <label for="cf-email">Email*</label>
+                    <input type="email" id="cf-email" name="email" placeholder="Email" autocomplete="email" required>
+                </div>
+                <div class="form-field">
+                    <label for="cf-message">Message*</label>
+                    <textarea id="cf-message" name="message" placeholder="Message" required></textarea>
+                </div>
+
+                <button type="submit" class="btn-send" id="sendBtn">
+                    <span class="ring" aria-hidden="true"></span>
+                    <span class="ring ring-2" aria-hidden="true"></span>
+                    <span class="btn-text">Send Message</span>
+                    <span class="plane-wrap" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="none"><path d="M21 3L3 10.5L10.8 13.2L13.5 21L21 3Z" fill="#fff"/><path d="M10.8 13.2L21 3" stroke="#14141C" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </span>
+                    <span class="check-wrap" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="none"><path class="check-path" d="M5 12.5L10 17.5L19 7" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </span>
+                </button>
+                <p class="form-status" id="formStatus" role="status" aria-live="polite"></p>
+            </form>
+        </div>
+    </div>
+</section>
+
+</main>
+
+<footer class="footer"><p>&copy; 2024&ndash;2026 Unish Baskota. All rights reserved.</p></footer>
+
+<script src="js/main.js" defer></script>
+</body>
+</html>
