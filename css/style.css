@@ -568,6 +568,9 @@ a:focus-visible, button:focus-visible, [role="button"]:focus-visible {
 .about-sign.visible:not(.reset) .sign-ribbon { animation: ribbonDraw 1.3s var(--ease) 2.05s both; }
 @keyframes ribbonDraw { 0% { opacity: 0; stroke-dashoffset: 1.02; } 2% { opacity: 1; stroke-dashoffset: 1.02; } 100% { opacity: 1; stroke-dashoffset: 0; } }
 .about-sign { cursor: default; }
+/* once the signature has played, keep it in its final state (no replay when revisiting the tab) */
+.about-sign.played .glyph { animation: none !important; stroke-dashoffset: 0; fill-opacity: 1; stroke-opacity: 0; }
+.about-sign.played .sign-ribbon { animation: none !important; opacity: 1; stroke-dashoffset: 0; }
 
 @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after {
